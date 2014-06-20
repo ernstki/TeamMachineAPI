@@ -35,6 +35,12 @@ All profiles are stored here with unique identifier
 + 'id' ... ID of the profile, server assigned
 + 'profName' ... profile name
 + 'profEmail' ... profile email
++ 'location' ... user location
++ 'skills' ... user skills
++ 'profPic' ... string representation of picture?
++ 'projects' ... projects user is involved in currently
++ 'bio' ... short profile bio
++ 'prevProj' ... previous projects the user has been involved in
 
 ### Affordances
 + 'show' ('self') ... A single profile object
@@ -42,9 +48,24 @@ All profiles are stored here with unique identifier
 
 + Parameters
     + id (required, int, `1`) ... id of the profile to retrieve
-    
 
++ Model
+        
+        {
+            "id": 1,
+            "profName": "nick",
+            "profEmail":"n@m.co",
+            "location":"?",
+            "skills":["lasers","cannons","Lasercannons","kitten cannons","Canonical References"]
+            "profPic":"STRINGREPRESENTATIONOFAIMAGEGOESHEREBUTIDON'THAVEONE"
+            "projects":["ProjectID1","ProjectID2","ProjectID4"]
+            "bio":"thisisabio"
+            "prevProj":["ProjectID3","ProjectID5"]
+        }
+        
 
+### Retrieve a profile [GET]
++ Response 200 (application/json)
 
 
 
