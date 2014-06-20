@@ -21,14 +21,14 @@ No attributes - only root API affordances
 + Response 200 (application/json)
 
         {
-            "self": {"href": "/"}
+            "self": {"href": "/"}d
             "projects": {"href": "/projects"}
             "profiles": {"href": "/profiles"}
         }
 
 
 ## Profile Collection [/profiles]
-All profiles are stored here with unique identifier
+All profiles are stored here with unique identifiers
 
 
 ## Profiles [/profiles/{id}]
@@ -65,7 +65,7 @@ All profiles are stored here with unique identifier
             "profEmail":"n@m.co",
             "location":"?",
             "skills":["lasers","cannons","Lasercannons","kitten cannons","Canonical References"]
-            "profPic":"STRINGREPRESENTATIONOFAIMAGEGOESHEREBUTIDON'THAVEONE"
+            "profPic":"STRINGREPRESENTATIONOFANIMAGEGOESHEREBUTIDON'THAVEONE"
             "projects":["ProjectID1","ProjectID2","ProjectID4"]
             "bio":"thisisabio"
             "prevProj":["ProjectID3","ProjectID5"]
@@ -76,7 +76,31 @@ All profiles are stored here with unique identifier
 
 
 ## Project Collection [/projects]
+All projects are stored here with unique identifiers
 
+###Attributes
++ 'id' ... ID of the project, server assigned
+
+###Affordances
++ 'show' ('self') ... Show all projects
+
++ Model (application/json)
+
+### Get all projects [GET]
+        [
+            {
+                "id": 1,
+                "title": "LaserCannons",
+                "description":"It will be large and destructive",
+                "compentencies":["lasers","cannons"]
+            },
+            {
+                "id": 1,
+                "title": "LaserCannons",
+                "description":"It will be large and destructive",
+                "compentencies":["lasers","cannons"]
+            }
+        ]
 
 
 ## Projects [/projects/{id}]
@@ -99,21 +123,6 @@ Where all the uncool projects are.
     
 + Model (application/json)
 
-        [
-            {
-                "id": 1,
-                "projName": "LaserCannons",
-                "subName":"It will be large and destructive",
-                "description":"testingadescriptionhere",
-                "compentencies":["lasers","cannons"]
-            },{
-                "id": 2, 
-                "projName": "HelpingKittens",
-                "subName":"Its kittens!",
-                "description":"THISISANOTHERDESCRIPTION",
-                "compentencies":["kittens","helping"]
-            }
-        ]
 
        
        
