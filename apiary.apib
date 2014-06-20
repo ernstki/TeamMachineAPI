@@ -14,14 +14,46 @@ No attributes - only root API affordances
 
 ### Affordances
 + 'show' ('self') ... API entry point
-+ 'folders' ... Lists all folders
++ 'projects' ... Lists all projects
++ 'profiles' ... Lists all profiles
 
 ### Retrieve API Root [GET]
 + Response 200 (application/json)
 
         {
-            "folders": {"href": "/folders"}
+            "projects": {"href": "/projects"}
         }
+
+
+## Profile Collection [/profiles]
+All profiles are stored here with unique identifier
+
+
+## Profiles [/profiles/{id}]
+
+### Attributes
++ 'id' ... ID of the profile, server assigned
++ 'profName' ... profile name
++ 'profEmail' ... profile email
+
+### Affordances
++ 'show' ('self') ... A single profile object
++ 'edit' ... Update or delete a profile
+
++ Parameters
+    + id (required, int, `1`) ... id of the profile to retrieve
+    
+
+
+
+
+
+
+
+
+
+## Project Collection [/projects]
+
 
 
 ## Projects [/projects/{id}]
@@ -40,27 +72,29 @@ Where all the uncool projects are.
 + 'edit' ... Update or delete a project
 
 + Parameters
-    + id (optional, int, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + id (optional, int, `1`) ... Numeric `id` of the folder to perform action with. Has example value.
     
 + Model (application/json)
 
         [
             {
                 "id": 1,
-                "title": "LaserCannons",
-                "description":"It will be large and destructive",
+                "projName": "LaserCannons",
+                "subName":"It will be large and destructive",
+                "description":"testingadescriptionhere",
                 "compentencies":["lasers","cannons"]
             },{
                 "id": 2, 
-                "title": "HelpingKittens",
-                "description":"Its kittens!",
+                "projName": "HelpingKittens",
+                "subName":"Its kittens!",
+                "description":"THISISANOTHERDESCRIPTION",
                 "compentencies":["kittens","helping"]
             }
         ]
 
-            
-
-### List all Projects [GET]
+       
+       
+### Retrieve a single project [GET]
 + Response 200 (application/json)
 
         [
@@ -69,11 +103,6 @@ Where all the uncool projects are.
                 "title": "LaserCannons",
                 "description":"It will be large and destructive",
                 "compentencies":["lasers","cannons"]
-            },{
-                "id": 2, 
-                "title": "HelpingKittens",
-                "description":"Its kittens!",
-                "compentencies":["kittens","helping"]
             }
         ]
 
