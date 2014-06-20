@@ -7,6 +7,23 @@ Team Machine
 # Group Projects
 Notes related resources of the **Projects API**
 
+
+## TeamMachine API [/]
+The API Entry point - Main node
+No attributes - only root API affordances
+
+### Affordances
++ 'show' ('self') ... API entry point
++ 'folders' ... Lists all folders
+
+### Retrieve API Root [GET]
++ Response 200 (application/json)
+
+        {
+            "folders": {"href": "/folders"}
+        }
+
+
 ## Projects Collection [/projects]
 Where all the cool projects are.
 ### List all Projects [GET]
@@ -36,30 +53,17 @@ Where all the cool projects are.
 
         { "id": 3, "title": "Buy cheese and bread for breakfast." }
 
-## Login [/login]
-Where you login
-###Send Login Information to Server [POST]
-+ Request (application/json)
-        {
-            
-            
 
-## Project [/notes/{id}]
+
+## Project [/projects/{id}]
 A single Project object with all its details
 
 + Parameters
     + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
 
-### Retrieve a Note [GET]
+### Retrieve a single Folder [GET]
 + Response 200 (application/json)
 
-    + Header
-
-            X-My-Header: The Value
-
-    + Body
-            { "id": 1, "title": "titties"}
-            { "id": 2, "title": "Pick-up posters from post-office" }
 
 ### Remove a Note [DELETE]
 + Response 204
