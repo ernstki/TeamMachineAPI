@@ -24,8 +24,42 @@ No attributes - only root API affordances
         }
 
 
-## Projects Collection [/projects]
-Where all the cool projects are.
+## Projects [/projects/{id}]
+Where all the uncool projects are.
+
+### Attributes
++ 'id' ... ID of the project, server assigned
++ 'projName' ... Name of the project
++ 'subName' ... Tag line for the project
++ 'description' ... Description of the project
++ 'meta' ... Catch all
+
+
+###Affordances
++ 'show' ('self') ... A single project
++ 'edit' ... Update or delete a project
+
++ Parameters
+    + id (optional, int, 1) ... Unique project ID in integer
+    
++ Model (application/json)
+
+        [
+            {
+                "id": 1,
+                "title": "LaserCannons",
+                "description":"It will be large and destructive",
+                "compentencies":["lasers","cannons"]
+            },{
+                "id": 2, 
+                "title": "HelpingKittens",
+                "description":"Its kittens!",
+                "compentencies":["kittens","helping"]
+            }
+        ]
+
+            
+
 ### List all Projects [GET]
 + Response 200 (application/json)
 
@@ -53,18 +87,3 @@ Where all the cool projects are.
 
         { "id": 3, "title": "Buy cheese and bread for breakfast." }
 
-
-
-## Project Identifier [/projects/{id}]
-A single Project object with all its details
-
-+ Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
-
-### Retrieve a single Folder [GET]
-+ Response 200 (application/json)
-
-        [projects][id]
-    
-### Remove a Note [DELETE]
-+ Response 204
