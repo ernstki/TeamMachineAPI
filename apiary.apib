@@ -15,15 +15,19 @@ No attributes - only root API affordances
 ### Affordances
 + 'show' ('self') ... API entry point
 + 'projects' ... Lists all projects
-+ 'profiles' ... Lists all profiles
++ 'person' ... Lists all 'people'
++ 'skills' ... Contains all skills
++ 'roles' ... Contains all roles, 
 
 ### Retrieve API Root [GET]
 + Response 200 (application/json)
 
         {
-            "self": {"href": "/"}d
+            "self": {"href": "/"}
             "projects": {"href": "/projects"}
             "profiles": {"href": "/profiles"}
+            "roles": {"href": "/roles"}
+            "skills": {"href": "/skills"}
         }
 
 
@@ -34,18 +38,15 @@ No attributes - only root API affordances
 All profiles are stored here with unique identifiers
 
 
-
-
-
 ## Profiles [/profiles/{id}]
 
 ### Attributes
-+ 'profID' ... ID of the profile, server assigned
-+ 'profName' ... profile name
-+ 'profEmail' ... profile email
++ 'ID' ... ID of the profile, server assigned
++ 'Name' ... profile name
++ 'Email' ... profile email
 + 'location' ... user location
 + 'skills' ... user skills
-+ 'profPic' ... string representation of picture?
++ 'Pic' ... string representation of picture?
 + 'projects' ... projects user is involved in currently
 + 'bio' ... short profile bio
 + 'prevProj' ... previous projects the user has been involved in
@@ -63,12 +64,12 @@ All profiles are stored here with unique identifiers
 + Response 200 (application/json)
 
         {
-            "profID": 1,
-            "profName": "nick",
-            "profEmail":"n@m.co",
+            "id": 1,
+            "name": "nick",
+            "email":"n@m.co",
             "location":"?",
             "skills":["lasers","cannons","Lasercannons","kitten cannons","Canonical References"]
-            "profPic":"STRINGREPRESENTATIONOFANIMAGEGOESHEREBUTIDON'THAVEONE"
+            "pic":"STRINGREPRESENTATIONOFANIMAGEGOESHEREBUTIDON'THAVEONE"
             "projects":["ProjectID1","ProjectID2","ProjectID4"]
             "bio":"thisisabio"
             "prevProj":["ProjectID3","ProjectID5"]
@@ -78,11 +79,45 @@ All profiles are stored here with unique identifiers
 
 
 
+
+
+
+
+
+
+
+
+## Skills Collection [/skills]
+Master list of all skills
+
+###Attributes
++ 'id' ... ID of the skill, server assigned
+
+###Affordances
++ 'show' ('self') ... Show all skills
+
++ Model (application/json)
+
+### Get all skills [GET]
+
++ Response 200 (application/json)
+
+
+
+
+
+
+
+
+
+
+
+
 ## Project Collection [/projects]
 All projects are stored here with unique identifiers
 
 ###Attributes
-+ 'projID' ... ID of the project, server assigned
++ 'id' ... ID of the project, server assigned
 
 ###Affordances
 + 'show' ('self') ... Show all projects
@@ -94,13 +129,13 @@ All projects are stored here with unique identifiers
 
         [
             {
-                "projID": 1,
+                "id": 1,
                 "title": "LaserCannons",
                 "description":"It will be large and destructive",
                 "compentencies":["lasers","cannons"]
             },
             {
-                "projID": 2,
+                "id": 2,
                 "title": "KittenCannons",
                 "description":"It will be small and fluffy",
                 "compentencies":["kittens","cannons"]
@@ -108,15 +143,12 @@ All projects are stored here with unique identifiers
         ]
 
 
-
-
-
 ## Projects [/projects/{id}]
 Where all the uncool projects are.
 
 ### Attributes
-+ 'projID' ... ID of the project, server assigned
-+ 'projName' ... Name of the project
++ 'id' ... ID of the project, server assigned
++ 'name' ... Name of the project
 + 'subName' ... Tag line for the project
 + 'description' ... Description of the project
 + 'meta' ... Catch all
@@ -136,7 +168,7 @@ Where all the uncool projects are.
 
         [
             {
-                "projID": 1,
+                "id": 1,
                 "title": "LaserCannons",
                 "description":"It will be large and destructive",
                 "compentencies":["lasers","cannons"]
@@ -152,16 +184,4 @@ Where all the uncool projects are.
 + Response 201 (application/json)
 
         { "id": 3, "title": "Buy cheese and bread for breakfast." }
-        
-### Update an Existing Project [PUT]
-+ Request (application/json)
 
-        [
-            {
-                "projID": 1,
-                "title": "LaserCannons",
-                "description":"It will be large and destructive",
-                "compentencies":["lasers","cannons"]
-            }
-        ]
-+ Response 200 (application/json)
