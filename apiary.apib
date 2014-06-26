@@ -15,7 +15,7 @@ No attributes - only root API affordances
 ### Affordances
 + 'show' ('self') ... API entry point
 + 'projects' ... Lists all projects
-+ 'person' ... Lists all 'people'
++ 'users' ... Lists all users
 + 'skills' ... Contains all skills
 + 'roles' ... Contains all roles, 
 
@@ -25,7 +25,7 @@ No attributes - only root API affordances
         {
             "self": {"href": "/"},
             "projects": {"href": "/projects"},
-            "profiles": {"href": "/profiles"},
+            "users": {"href": "/profiles"},
             "roles": {"href": "/roles"},
             "skills": {"href": "/skills"}
         }
@@ -34,33 +34,49 @@ No attributes - only root API affordances
 
 
 
-## Profile Collection [/profiles]
+## User Collection [/users]
 All profiles are stored here with unique identifiers
 
+### Attributes
++ 'id' ... user id assigned by server
++ 'userName' ... all userNames
++ 'passwordHash' ... hashed password
++ 'email' ... user's email
 
-## Profiles [/profiles/{id}]
+### Affordances
+### Create a new user [POST]
++ Response 201 (application/json)
+
+        {
+            "id":40
+        }
+
+
+## Individual User [/users/{id}]
 
 ### Attributes
-+ 'ID' ... ID of the profile, server assigned
-+ 'Name' ... profile name
-+ 'Email' ... profile email
++ 'id' ... ID of the user, server assigned
++ 'firstName' ... user first name
++ 'lastName' ... user last name
++ 'email' ... user registered email
 + 'location' ... user location
 + 'skills' ... user skills
-+ 'Pic' ... string representation of picture?
++ 'picture' ... string representation of picture?
 + 'projects' ... projects user is involved in currently
 + 'bio' ... short profile bio
++ 'status' ... status for a user
 + 'prevProj' ... previous projects the user has been involved in
 
 ### Affordances
-+ 'show' ('self') ... A single profile object
-+ 'edit' ... Update or delete a profile
++ 'show' ('self') ... A single user object
++ 'edit' ... Update or delete a user
 
 + Parameters
-    + id (required, int, `1`) ... id of the profile to retrieve
+    + id (required, int, `1`) ... id of the user to retrieve
 
 + Model
         
-### Retrieve a profile [GET]
+### Retrieve a user [GET]
 + Response 200 (application/json)
 
         {
@@ -69,10 +85,29 @@ All profiles are stored here with unique identifiers
             "email":"n@m.co",
             "location":"?",
             "skills":["lasers","cannons","Lasercannons","kitten cannons","Canonical References"]
-            "pic":"STRINGREPRESENTATIONOFANIMAGEGOESHEREBUTIDON'THAVEONE"
+            "pic":{"href": "/images/123.jpg"}
             "projects":["ProjectID1","ProjectID2","ProjectID4"]
             "bio":"thisisabio"
             "prevProj":["ProjectID3","ProjectID5"]
+        }
+
+## User Experience [/users/{id}/experience]
+Location of user's expeience/skills
+
+### Attributes
++ skill ... [{"id":"level"},{...},{...}]
+
+### Affordances
++ 'add' (post) ... add an experience to the user
++ 'show' (get) ... get all experience of a user
+
+### 'Show' [GET]
++ Response 200 (application/json)
+        
+        {
+            "skill":[{"12":"2"},
+                    {"109":"5"},
+                    {"123":"9"}]
         }
 
 
