@@ -8,6 +8,8 @@ Team Machine
 Notes related resources of the **Projects API**
 
 
+
+
 ## TeamMachine API [/]
 The API Entry point - Main node;
 No attributes - only root API affordances
@@ -34,22 +36,28 @@ No attributes - only root API affordances
 
 
 
+
+
+
+
 ## User Collection [/users]
 All users are stored here with unique identifiers
 
 ### Attributes
 + 'id' ... user id assigned by server
-+ 'userName' ... all userNames
-+ 'passwordHash' ... hashed password
-+ 'email' ... user's email
 
 ### Affordances
+
+
 ### Create a new user [POST]
 + Response 201 (application/json)
 
         {
-            "id":40
+            "id":[1,2,3,5,6,8,9,12,22,34,44,45,67,77,78,88]
         }
+
+
+
 
 
 ## Individual User [/users/{id}]
@@ -84,12 +92,21 @@ All users are stored here with unique identifiers
             "name": "nick",
             "email":"n@m.co",
             "location":"?",
-            "skills":["lasers","cannons","Lasercannons","kitten cannons","Canonical References"]
+            "skillset":["lasers","cannons","Lasercannons","kitten cannons","Canonical References"]
             "pic":{"href": "/images/123.jpg"}
             "projects":["ProjectID1","ProjectID2","ProjectID4"]
             "bio":"thisisabio"
             "prevProj":["ProjectID3","ProjectID5"]
         }
+        
+### Delete a user by id [DELETE]
++ Response 202
+
+### Update a user by id [PUT]
++ Response 202
+
+
+
 
 ## User Experience [/users/{id}/experience]
 Location of user's expeience/skills
@@ -112,6 +129,19 @@ Location of user's expeience/skills
                     {"109":"5"},
                     {"123":"9"}]
         }
+
+### Update Experience [PUT]
++ Response 202
+
+### Add Skill to skillset [POST]
++ Response 201
+
+### Delete skill from skillset [DELETE]
++ Response 202
+
+
+
+
 
 
 
