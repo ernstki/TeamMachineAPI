@@ -11,8 +11,8 @@ Notes related resources of the **Projects API**
 
 
 ## TeamMachine API [/]
-The API Entry point - Main node;
-No attributes - only root API affordances
++ The API Entry point - Main node;
++ No attributes - only root API affordances
 
 ### Affordances
 + 'show' ('self') ... API entry point
@@ -41,19 +41,15 @@ No attributes - only root API affordances
 
 
 ## User Collection [/users]
-All users are stored here with unique identifiers
++ Root collection of all users
 
 ### Attributes
-+ 'id' ... returned user id assigned by server
-+ 'firstName' ... returned first name of user
-+ 'lastName' ... returned last name of user
-+ 'picture' ... returned picture of user
-+ 'location' ... returned location of user
-+ 'skillset' ... returned skillset of user
++ 'id' ... Subset of each user within collection
 
 ### Affordances
 + These are functions used as HTTP requests (client -> server):
-+ 'GET' ... search for a user
++ 'GET' ... search for user(s) with query parameters (Returns [id, firstName, lastName, picture, location, skillset])
++ 'POST' ... Create a new user
 
 ### Create a new user [POST]
 + Response 201 (application/json)
@@ -88,13 +84,14 @@ All users are stored here with unique identifiers
 + 'prevProj' ... previous projects the user has been involved in
 
 ### Affordances
-+ 'show' ('self') ... A single user object
-+ 'edit' ... Update or delete a user
++ These are functions used as HTTP requests (client -> server):
++ 'GET' ... Retrieve a user
++ 'PUT' ... Update a user
++ 'DELETE' ... Delete a user
 
 + Parameters
     + id (required, int, `1`) ... id of the user to retrieve
 
-+ Model
         
 ### Retrieve a user [GET]
 + Response 200 (application/json)
@@ -127,8 +124,9 @@ Location of user's expeience/skills
 + skill ... [{"id":"level"},{...},{...}]
 
 ### Affordances
-+ 'add' (post) ... add an experience to the user
-+ 'show' (get) ... get all experience of a user
++ These are functions used as HTTP requests (client -> server):
++ POST ... add an experience to the user
++ GET ... get all experience of a user
 
 + Parameters
     + id (required, init,`1`) ... id of the user to retrieve
@@ -164,6 +162,7 @@ Collection of all roles
 
 
 ### Affordances
++ These are functions used as HTTP requests (client -> server):
 
 
 ### Retrieve a profile [GET]
@@ -183,6 +182,7 @@ Master list of all skills
 + 'id' ... ID of the skill, server assigned
 
 ###Affordances
++ These are functions used as HTTP requests (client -> server):
 + 'show' ('self') ... Show all skills
 
 + Model (application/json)
@@ -209,6 +209,7 @@ All projects are stored here with unique identifiers
 + 'id' ... ID of the project, server assigned
 
 ###Affordances
++ These are functions used as HTTP requests (client -> server):
 + 'show' ('self') ... Show all projects
 
 + Model (application/json)
@@ -240,6 +241,7 @@ Where all the uncool projects are.
 
 
 ###Affordances
++ These are functions used as HTTP requests (client -> server):
 + 'show' ('self') ... A single project
 + 'edit' ... Update or delete a project
 
