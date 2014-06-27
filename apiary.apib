@@ -15,11 +15,8 @@ Notes related resources of the **Projects API**
 + No attributes - only root API affordances
 
 ### Affordances
-+ 'show' ('self') ... API entry point
-+ 'projects' ... Lists all projects
-+ 'users' ... Lists all users
-+ 'skills' ... Contains all skills
-+ 'roles' ... Contains all roles, 
++ These are functions used as HTTP requests (client -> server):
++ 'GET' ... Give version info, paths
 
 ### Retrieve API Root [GET]
 + Response 200 (application/json)
@@ -165,10 +162,14 @@ Collection of all roles
 + These are functions used as HTTP requests (client -> server):
 
 
-### Retrieve a profile [GET]
+### Search Roles [GET]
  + Response 200 (application/json)
-
-
+    
+        {
+            "skill":[{"12":"2"},
+                    {"109":"5"},
+                    {"123":"9"}]
+        }
 
 
 
@@ -183,19 +184,24 @@ Master list of all skills
 
 ###Affordances
 + These are functions used as HTTP requests (client -> server):
-+ 'show' ('self') ... Show all skills
++ [GET] ... Search skills
++ [POST] ... create new skill
 
-+ Model (application/json)
 
-### Get all skills [GET]
-
+### Search skills [GET]
 + Response 200 (application/json)
 
 
 
 
 
+## Individual skill [/skills/{id}]
+Individual skill within coollection of all skills
 
+###Attributes
++ 'id' ... ID of the skill, server assigned
++ 'skill' ... name of the skill, server assigned
++ 'description' ... description of the skill
 
 
 
@@ -253,14 +259,12 @@ Where all the uncool projects are.
 ### Retrieve a single project [GET]
 + Response 200 (application/json)
 
-        [
-            {
-                "id": 1,
-                "title": "LaserCannons",
-                "description":"It will be large and destructive",
-                "compentencies":["lasers","cannons"]
-            }
-        ]
+        {
+            "id": 1,
+            "title": "LaserCannons",
+            "description":"It will be large and destructive",
+            "compentencies":["lasers","cannons"]
+        }
 
 ### Create a Project [POST]
 + Request (application/json)
