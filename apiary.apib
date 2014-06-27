@@ -52,8 +52,17 @@ All users are stored here with unique identifiers
 ### Create a new user [POST]
 + Response 201 (application/json)
 
+### Get all users base info [GET]
++ Response 200 (application/json)
+
         {
-            "id":[1,2,3,5,6,8,9,12,22,34,44,45,67,77,78,88]
+            Data
+            {
+                "Data0":[{"id":"1"},{"firstName":"Nick"},{"lastName":"Malott"},{"picture":{"href":"/images/123.jpg"}},{"location":"Cincinnati"},{"skillset":["lasers","cannons","lasercannons","popcorn"]}],
+                "Data1":[{"id":"2"},{"firstName":"Matt"},{"lastName":"Joe"},{"picture":{"href":"/images/3123.jpg"}},{"location":"Chicaaaaaaago"},{"skillset":["toilet economics"]}],
+                "Data2":[{"id":"43"},{"firstName":"Mick"},{"lastName":"Jagger"},{"picture":{"href":"/images/3.jpg"}},{"location":"Hell"},{"skillset":["Tofu","Not Tofu"]}],
+                "Data3":[{"id":"4333"},{"firstName":"John"},{"lastName":"Jacob"},{"picture":{"href":"/images/123.jpg"}},{"location":"Jingle"},{"skillset":["Heimer","Schmidt"]}]
+            }
         }
 
 
@@ -156,8 +165,6 @@ Collection of all roles
 
 ### Retrieve a profile [GET]
  + Response 200 (application/json)
- 
-
 
 
 
