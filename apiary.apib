@@ -44,10 +44,16 @@ No attributes - only root API affordances
 All users are stored here with unique identifiers
 
 ### Attributes
-+ 'id' ... user id assigned by server
++ 'id' ... returned user id assigned by server
++ 'firstName' ... returned first name of user
++ 'lastName' ... returned last name of user
++ 'picture' ... returned picture of user
++ 'location' ... returned location of user
++ 'skillset' ... returned skillset of user
 
 ### Affordances
-
+These are functions used as HTTP requests:
++ 'GET' ... search for a user
 
 ### Create a new user [POST]
 + Response 201 (application/json)
@@ -99,7 +105,7 @@ All users are stored here with unique identifiers
             "email":"n@m.co",
             "location":"?",
             "skillset":["lasers","cannons","Lasercannons","kitten cannons","Canonical References"]
-            "pic":{"href": "/images/123.jpg"}
+            "picture":{"href": "/images/123.jpg"}
             "projects":["ProjectID1","ProjectID2","ProjectID4"]
             "bio":"thisisabio"
             "prevProj":["ProjectID3","ProjectID5"]
@@ -207,22 +213,14 @@ All projects are stored here with unique identifiers
 
 + Model (application/json)
 
-### Get all projects [GET]
+### Search all projects [GET]
 + Response 200 (application/json)
 
         [
-            {
-                "id": 1,
-                "title": "LaserCannons",
-                "description":"It will be large and destructive",
-                "compentencies":["lasers","cannons"]
-            },
-            {
-                "id": 2,
-                "title": "KittenCannons",
-                "description":"It will be small and fluffy",
-                "compentencies":["kittens","cannons"]
-            }
+            {"id":"34","name":"LaserCannon V0.1","subName":"A cannon for lasers","created":"June 10th, 2014","manager":"Alain Kuchta"},
+            {"id":"22","firstName":"Matt","lastName":"Joe","picture":{"href":"/images/3123.jpg"},"location":"Chicaaaaaaago","skillset":["toilet economics"]},
+            {"id":"493","firstName":"Mick","lastName":"Jagger","picture":{"href":"/images/3.jpg"},"location":"Hell","skillset":["Tofu","Not Tofu"]},
+            {"id":"8008135","firstName":"John","lastName":"Jacob","picture":{"href":"/images/123.jpg"},"location":"Jingle","skillset":["Heimer","Schmidt"]}
         ]
 
 
@@ -233,7 +231,11 @@ Where all the uncool projects are.
 + 'id' ... ID of the project, server assigned
 + 'name' ... Name of the project
 + 'subName' ... Tag line for the project
++ 'created' ... Date project created
++ 'lastUpdated' ... Date project last updated
++ 'manager' ... Project manager/owner
 + 'description' ... Description of the project
++ 'picture' ... picture for project
 + 'meta' ... Catch all
 
 
