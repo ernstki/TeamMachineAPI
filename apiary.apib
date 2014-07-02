@@ -55,10 +55,10 @@ Notes related resources of the **Projects API**
 + Response 200 (application/json)
 
         [
-            {"id":"1","firstName":"Nick","lastName":"Malott","picture":{"href":"/images/123.jpg"},"location":"Cincinnati","skillset":["lasers","cannons","lasercannons","popcorn"]},
-            {"id":"2","firstName":"Matt","lastName":"Joe","picture":{"href":"/images/3123.jpg"},"location":"Chicaaaaaaago","skillset":["toilet economics"]},
-            {"id":"43","firstName":"Mick","lastName":"Jagger","picture":{"href":"/images/3.jpg"},"location":"Hell","skillset":["Tofu","Not Tofu"]},
-            {"id":"4333","firstName":"John","lastName":"Jacob","picture":{"href":"/images/123.jpg"},"location":"Jingle","skillset":["Heimer","Schmidt"]}
+            {"id":1,"firstName":"Nick","lastName":"Malott","picture":{"href":"/images/123.jpg"},"location":"Cincinnati","skillset":["lasers","cannons","lasercannons","popcorn"]},
+            {"id":2,"firstName":"Matt","lastName":"Joe","picture":{"href":"/images/3123.jpg"},"location":"Chicaaaaaaago","skillset":["toilet economics"]},
+            {"id":43,"firstName":"Mick","lastName":"Jagger","picture":{"href":"/images/3.jpg"},"location":"Hell","skillset":["Tofu","Not Tofu"]},
+            {"id":4333,"firstName":"John","lastName":"Jacob","picture":{"href":"/images/123.jpg"},"location":"Jingle","skillset":["Heimer","Schmidt"]}
         ]
 
 
@@ -100,9 +100,9 @@ Notes related resources of the **Projects API**
             "location":"?",
             "skillset":["lasers","cannons","Lasercannons","kitten cannons","Canonical References"],
             "picture":{"href": "/images/123.jpg"},
-            "projects":["ProjectID1","ProjectID2","ProjectID4"],
+            "projects":[1,2,3],
             "bio":"thisisabio",
-            "prevProj":["ProjectID3","ProjectID5"]
+            "prevProj":[4,5]
         }
         
 ### Delete a user by id [DELETE]
@@ -132,9 +132,9 @@ Location of user's expeience/skills
 + Response 200 (application/json)
         
         {
-            "skill":[{"12":"2"},
-                    {"109":"5"},
-                    {"123":"9"}]
+            "skill":[{12:2},
+                    {109:5},
+                    {123:9}]
         }
 
 ### Update Experience [PUT]
@@ -166,9 +166,9 @@ Collection of all roles
  + Response 200 (application/json)
     
         {
-            "skill":[{"12":"2"},
-                    {"109":"5"},
-                    {"123":"9"}]
+            "skill":[{12:2},
+                    {109:5},
+                    {123:9}]
         }
 
 
@@ -225,14 +225,14 @@ All projects are stored here with unique identifiers
 
         [
             {
-                "id": "34",
+                "id": 34,
                 "name": "LaserCannon V0.1",
                 "subName": "A cannon for lasers",
                 "created": "June 10th, 2014",
                 "manager": "Alain Kuchta"
             },
             {
-                "id": "22",
+                "id": 22,
                 "firstName": "Matt",
                 "lastName": "Joe",
                 "picture": {
@@ -244,7 +244,7 @@ All projects are stored here with unique identifiers
                 ]
             },
             {
-                "id": "493",
+                "id": 493,
                 "firstName": "Mick",
                 "lastName": "Jagger",
                 "picture": {
@@ -257,7 +257,7 @@ All projects are stored here with unique identifiers
                 ]
             },
             {
-                "id": "8008135",
+                "id": 8008135,
                 "firstName": "John",
                 "lastName": "Jacob",
                 "picture": {
