@@ -49,15 +49,60 @@ Resources of the **Projects API**
 + Response 200 (application/json)
 
         [
-            {"id":1,"firstName":"Nick","lastName":"Malott","picture":{"href":"/images/123.jpg"},"location":"Cincinnati","skillset":["lasers","cannons","lasercannons","popcorn"]},
-            {"id":2,"firstName":"Matt","lastName":"Joe","picture":{"href":"/images/3123.jpg"},"location":"Chicaaaaaaago","skillset":["toilet economics"]},
-            {"id":43,"firstName":"Mick","lastName":"Jagger","picture":{"href":"/images/3.jpg"},"location":"Hell","skillset":["Tofu","Not Tofu"]},
-            {"id":4333,"firstName":"John","lastName":"Jacob","picture":{"href":"/images/123.jpg"},"location":"Jingle","skillset":["Heimer","Schmidt"]}
+            {
+                "id": 1,
+                "firstName": "Nick",
+                "lastName": "Malott",
+                "picture": {
+                    "href": "/images/123.jpg"
+                },
+                "location": "Cincinnati",
+                "skillset": [
+                    "lasers",
+                    "cannons",
+                    "lasercannons",
+                    "popcorn"
+                ]
+            },
+            {
+                "id": 2,
+                "firstName": "Matt",
+                "lastName": "Joe",
+                "picture": {
+                    "href": "/images/3123.jpg"
+                },
+                "location": "Chicaaaaaaago",
+                "skillset": [
+                    "toilet economics"
+                ]
+            },
+            {
+                "id": 43,
+                "firstName": "Mick",
+                "lastName": "Jagger",
+                "picture": {
+                    "href": "/images/3.jpg"
+                },
+                "location": "Hell",
+                "skillset": [
+                    "Tofu",
+                    "Not Tofu"
+                ]
+            },
+            {
+                "id": 4333,
+                "firstName": "John",
+                "lastName": "Jacob",
+                "picture": {
+                    "href": "/images/123.jpg"
+                },
+                "location": "Jingle",
+                "skillset": [
+                    "Heimer",
+                    "Schmidt"
+                ]
+            }
         ]
-
-
-
-
 
 ## Individual User [/users/{id}]
 
@@ -112,7 +157,7 @@ Resources of the **Projects API**
 Location of user's expeience/skills
 
 ### Attributes
-+ skill ... [{"id":"level"},{...},{...}]
++ proficiency ... [{"id":"level"},{...},{...}]
 
 ### Affordances
 + These are functions used as HTTP requests (client -> server):
@@ -126,9 +171,9 @@ Location of user's expeience/skills
 + Response 200 (application/json)
         
         {
-            "skill":[{12:2},
-                    {109:5},
-                    {123:9}]
+            "proficiency":[[{"id":12},{"level":2}],
+                    [{"id":356},{"level":7}],
+                    [{"id":122},{"level":9}]]
         }
 
 ### Update Experience [PUT]
@@ -160,7 +205,7 @@ Collection of all roles
  + Response 200 (application/json)
     
         {
-            "skill":[{12:2},
+            "skills":[{12:2},
                     {109:5},
                     {123:9}]
         }
