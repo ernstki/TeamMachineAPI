@@ -21,21 +21,6 @@ Resources of the **Projects API**
 
 
 
-#Group Search Definitions
-Defined search parameters to append to root get requests
-
-####User Search Definitions
-?firstName=John ... search users by first name
-?lastName=Jacob ... search users by last name
-?email=joe@shmoe.com ... search users by email
-?location=cincinnati ... search users by location
-?skill=skillname ... search users by a skill
-?projects=proj ... search users by active projects
-?prevProjects=proj ... search users by previous projects
-
-
-
-
 # Group Users
 
 ## User Collection [/users]
@@ -81,6 +66,15 @@ Defined search parameters to append to root get requests
 
 
 ### Get all users base info - Intended for use with search [GET]
++ Parameters
+    + firstname (optional, string, `John`) ... search users by first name
+    + lastName (optional, string, `Mots`) ... search users by last name
+    + email (optional, string, `mots@john.com`) ... search users by email
+    + location (optional, string, `Cincinnati`) ... search users by location
+    + skill (optional, string, `Android`) ... search users by a skill
+    + projects (optional, string, `Lasers`) ... search users by active projects
+    + prevProjects (optional, string, `suchAProject`) ... search users by previous projects
+
 + Response 200 (application/json)
 
         {
@@ -227,6 +221,9 @@ Master list of all skills
 + 'POST' ... Add a skill
 
 ### Get all skills - Used for search [GET]
++ Parameters
+    + skill (optional, string, `Android`) ... search skills by skill name
+
 + Response 200 (application/json)
     
         {
@@ -308,6 +305,14 @@ All projects are stored here with unique identifiers
 
 
 ### Get all projects - Used for search [GET]
++ Parameters
+    + name (optional, string, `Kitten`) ... search projects by name
+    + subName (optional, string, `Kitten`) ... search projects by subName
+    + lastUpdated (optional, string, `15`) ... search projects by lastUpdated by # of days
+    + manager (optional, string, `Stalin`) ... search projects by manager name
+    
+
+
 + Response 200 (application/json)
 
         [
