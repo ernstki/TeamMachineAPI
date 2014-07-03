@@ -152,49 +152,71 @@ Resources of the **Projects API**
 
 
 
+# Group Proficiency
+All resources related to users
 
-## User Experience [/users/{id}/experience]
-Location of user's expeience/skills
-
-### Attributes
-+ proficiency ... [{"id":"level"},{...},{...}]
-
-### Affordances
-+ These are functions used as HTTP requests (client -> server):
-+ POST ... add an experience to the user
-+ GET ... get all experience of a user
+## Proficiency Collection [/users/{id}/proficiencies]
 
 + Parameters
     + id (required, init,`1`) ... id of the user to retrieve
+    
++ Model (application/hal+json)
+    
+    JSON Representation of a Proficiency
+    
+    + Body
+    
+            [
+                {
+                    "id": 1,
+                    "skillId": 12,
+                    "level": 2
+                }
+            ]
+            
 
-### 'Show' [GET]
+### List All Proficiencies [GET]
 + Response 200 (application/json)
 
-        [
+        [Proficiency Collection][]
+
+### Create a Proficiency [POST]
++ Response 201
+
+        {
+            "skillId": 457,
+            "level": 2
+        }
+
+## Proficiency [/users/{userId}/proficiencies/{profId}]
+
++ Parameters
+    + userId (required, init,`1`) ... id of the user to retrieve
+    + profId (required, init,`1`) ... id of the proficiency to retrieve
+    
++ Model (application/hal+json)
+    
+    JSON Representation of a Proficiency
+    
+    + Body
+
             {
                 "id": 1,
                 "skillId": 12,
                 "level": 2
-            },
-            {
-                "id": 2,
-                "skillId": 356,
-                "level": 7
-            },
-            {
-                "id": 3,
-                "skillId": 122,
-                "level": 9
             }
-        ]
 
-### Update Experience [PUT]
+
+### Retrieve a single Proficiency [GET]
++ Response 200
+
+    [Proficiency][]
+    
+### Update A Proficiency [PUT]
 + Response 202
 
-### Add Skill to skillset [POST]
-+ Response 201
 
-### Delete skill from skillset [DELETE]
+### Delete a proficiency [DELETE]
 + Response 202
 
 
