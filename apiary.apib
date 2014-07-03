@@ -7,24 +7,16 @@ Team Machine API Specification
 # Group Root
 Resources of the **Projects API**
 
-## TeamMachine API [/]
+## TeamMachine API [../]
 + The API Entry point - Main node;
-+ No attributes - only root API affordances
++ No attributes - No Affordances
++ API Definition
 
-### Affordances
-+ These are functions used as HTTP requests (client -> server):
-+ 'GET' ... Give version info, paths
+### Definitions:
++ Attributes: Properties of the level
++ Affordances: These are functions used as HTTP requests (client -> server):
 
-### Retrieve API Root [GET]
-+ Response 200 (application/json)
 
-        {
-            "self": {"href": "/"},
-            "projects": {"href": "/projects"},
-            "users": {"href": "/users"},
-            "roles": {"href": "/roles"},
-            "skills": {"href": "/skills"}
-        }
 
 
 # Group Users
