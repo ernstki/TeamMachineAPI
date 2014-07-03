@@ -354,7 +354,7 @@ All projects are stored here with unique identifiers
 ## Projects [/projects/{id}]
 
 ### Attributes
-+ 'id' ... ID of the project, server assigned
++ 'id' ... ID of the project, server assignedj
 + 'name' ... Name of the project
 + 'subName' ... Tag line for the project
 + 'description' ... Description of the project
@@ -375,13 +375,19 @@ All projects are stored here with unique identifiers
     
 
 ### Retrieve a single project [GET]
-+ Request
++ Response 200 (application/json)
 
         {
-            "id":2
+            "id":5,
+            "name": "ThisIsMyProj",
+            "subname": "AndSubname",
+            "description":"Thang",
+            "competencies":["defi","AndSame"],
+            "lastUpdated":"3/27/2014 05:22:35",
+            "manager":12345,
+            "picture":"/images/123.jpg"
         }
 
-+ Response 200 (application/json)
 
 ### Update a project [PUT]
 + Request
