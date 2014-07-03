@@ -2,13 +2,10 @@ FORMAT: 1A
 HOST: http://www.google.com
 
 # TeamMachine
-Team Machine
+Team Machine API Specification
 
 # Group Root
 Resources of the **Projects API**
-
-
-
 
 ## TeamMachine API [/]
 + The API Entry point - Main node;
@@ -194,7 +191,7 @@ To update a Proficiency send a JSON with updated value for one or more of the Pr
 
 
 ## Proficiency Collection [/users/{id}/proficiencies]
-
+Access all the proficiencies belonging to a user and add new proficiencies to that user
 + Parameters
     + id (required, init,`1`) ... id of the user to retrieve
     
@@ -260,37 +257,70 @@ Collection of all roles
 
 
 
+# Group Skills
 
-## Skills Collection [/skills]
-Master list of all skills
-
-###Attributes
-+ 'id' ... ID of the skill, server assigned
-
-###Affordances
-+ These are functions used as HTTP requests (client -> server):
-+ [GET] ... Search skills
-+ [POST] ... create new skill
-
-
-### Search skills [GET]
-+ Response 200 (application/json)
-
-
-
-
-
-## Individual skill [/skills/{id}]
+## Skill [/skills/{id}]
 Individual skill within coollection of all skills
 
 ###Attributes
 + 'id' ... ID of the skill, server assigned
-+ 'skill' ... name of the skill, server assigned
++ 'name' ... name of the skill, server assigned
 + 'description' ... description of the skill
 
++ Model (application/json)
 
+    + Body
+    
+            {
+                "id":1,
+                "name":"Lasers",
+                "description": "Lasers and stuff"
+            }
+            
+### Retrieve a single Skill [GET]
++ Response 200 (application/json)
 
+    [Skill][]
 
+## Skills Collection [/skills{?name}]
+Master list of all skills
+
++ Parameters
+    + name (optional, string, `LASERS`) ... name of the skill to search for, case insensitive
+
++ Model (application/json)
+
+    + Body
+    
+            [
+                {
+                    "id":1,
+                    "name":"Lasers",
+                    "description": "Lasers and stuff"
+                },
+                {
+                    "id":2,
+                    "name":"Kittens",
+                    "description": "Purrr"
+                }   
+            ]
+
+### Search Skills [GET]
++ Response 200 (application/json)
+
+    [Skills Collection][]
+    
+### Create a new Skill [POST]
++ Request (application/json)
+
+        {
+            "name":"Lasers",
+            "description": "Lasers and stuff"
+        }
+
++ Response 200 (application/json)
+
+    [Skill][]
 
 # Group Projects
 
