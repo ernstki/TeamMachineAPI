@@ -12,8 +12,8 @@ Resources of the **Projects API**
 + No attributes - No Affordances
 + API Definition
 
-### Definitions:
-+ Attributes: Properties of the level
+#### Definitions:
++ Attributes: Stored properties of the URI
 + Affordances: These are functions used as HTTP requests (client -> server):
 
 
@@ -38,61 +38,57 @@ Resources of the **Projects API**
 ### Get all users base info [GET]
 + Response 200 (application/json)
 
-        [
-            {
-                "id": 1,
-                "firstName": "Nick",
-                "lastName": "Malott",
-                "picture": {
-                    "href": "/images/123.jpg"
-                },
-                "location": "Cincinnati",
-                "skillset": [
-                    "lasers",
-                    "cannons",
-                    "lasercannons",
-                    "popcorn"
-                ]
+        {
+            "id": 1,
+            "firstName": "Nick",
+            "lastName": "Malott",
+            "picture": "/images/123.jpg",
+            "location": "Cincinnati",
+            "skillset": [
+                "lasers",
+                "cannons",
+                "lasercannons",
+                "popcorn"
+            ]
+        },
+        {
+            "id": 2,
+            "firstName": "Matt",
+            "lastName": "Joe",
+            "picture": {
+                "href": "/images/3123.jpg"
             },
-            {
-                "id": 2,
-                "firstName": "Matt",
-                "lastName": "Joe",
-                "picture": {
-                    "href": "/images/3123.jpg"
-                },
-                "location": "Chicaaaaaaago",
-                "skillset": [
-                    "toilet economics"
-                ]
+            "location": "Chicaaaaaaago",
+            "skillset": [
+                "toilet economics"
+            ]
+        },
+        {
+            "id": 43,
+            "firstName": "Mick",
+            "lastName": "Jagger",
+            "picture": {
+                "href": "/images/3.jpg"
             },
-            {
-                "id": 43,
-                "firstName": "Mick",
-                "lastName": "Jagger",
-                "picture": {
-                    "href": "/images/3.jpg"
-                },
-                "location": "Hell",
-                "skillset": [
-                    "Tofu",
-                    "Not Tofu"
-                ]
+            "location": "Hell",
+            "skillset": [
+                "Tofu",
+                "Not Tofu"
+            ]
+        },
+        {
+            "id": 4333,
+            "firstName": "John",
+            "lastName": "Jacob",
+            "picture": {
+                "href": "/images/123.jpg"
             },
-            {
-                "id": 4333,
-                "firstName": "John",
-                "lastName": "Jacob",
-                "picture": {
-                    "href": "/images/123.jpg"
-                },
-                "location": "Jingle",
-                "skillset": [
-                    "Heimer",
-                    "Schmidt"
-                ]
-            }
-        ]
+            "location": "Jingle",
+            "skillset": [
+                "Heimer",
+                "Schmidt"
+            ]
+        }
 
 ## Individual User [/users/{id}]
 
