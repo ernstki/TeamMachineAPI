@@ -151,11 +151,15 @@ Resources of the **Projects API**
 ### Update a user by id [PUT]
 + Response 202
 
-## Proficiency [/users/{userId}/proficiencies/{profId}]
+## Proficiency [/proficiencies/{id}]
+### Attributes
++ 'id' ... ID of the proficiency, server assigned
++ 'skillId' ... ID of the skill referenced
++ 'level' ... a rating of the proficiency with the skill
+
 
 + Parameters
-    + userId (required, init,`1`) ... id of the user to retrieve
-    + profId (required, init,`1`) ... id of the proficiency to retrieve
+    + id (required, init,`1`) ... id of the proficiency to retrieve
     
 + Model (application/hal+json)
     
@@ -175,9 +179,15 @@ Resources of the **Projects API**
 
     [Proficiency][]
     
-### Update A Proficiency [PUT]
-+ Response 202
+### Update a Proficiency [PUT]
+To update a Proficiency send a JSON with updated value for one or more of the Proficiency resource attributes. All attributes values (states) from the previous version of this Proficiency are carried over by default if not included in the hash.
 
++ Request (application/json)
+
+        {
+            "content": "Updated file contents"
+        }
++ Response 202
 
 ### Delete a proficiency [DELETE]
 + Response 202
@@ -214,6 +224,13 @@ Resources of the **Projects API**
     [Proficiency Collection][]
 
 ### Create a Proficiency [POST]
++ Request (application/json)
+
+        {
+            "skillId": 14,
+            "level": 5
+        }
+    
 + Response 201
     
     [Proficiency][]
