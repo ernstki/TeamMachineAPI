@@ -257,7 +257,7 @@ Access all the proficiencies belonging to a user and add new proficiencies to th
                 "required": true,
                 "properties": {
                     "skillId": {
-                        "type": ["string", "null"],
+                        "type": ["string"],
                         "required": true
                     },
                     "level": {
@@ -267,11 +267,9 @@ Access all the proficiencies belonging to a user and add new proficiencies to th
                 }
             }
         
-+ Response 201
++ Response 201 (application/json)
     
     [Proficiency][]
-
-
 
 ## Roles Collection [/roles]
 Collection of all roles
