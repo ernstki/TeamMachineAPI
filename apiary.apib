@@ -4,6 +4,9 @@ HOST: http://www.google.com
 # TeamMachine
 Team Machine API Specification
 
+
+
+
 # Group Root
 Resources of the **Projects API**
 
@@ -18,6 +21,20 @@ Resources of the **Projects API**
 
 
 
+#Group Search Definitions
+Defined search parameters to append to root get requests
+
+####User Search Definitions
+?firstName=John ... search users by first name
+?lastName=Jacob ... search users by last name
+?email=joe@shmoe.com ... search users by email
+?location=cincinnati ... search users by location
+?skill=skillname ... search users by a skill
+?projects=proj ... search users by active projects
+?prevProjects=proj ... search users by previous projects
+
+
+
 
 # Group Users
 
@@ -26,6 +43,16 @@ Resources of the **Projects API**
 
 ### Attributes
 + 'id' ... Subset of each user within collection
++ 'firstName' ... user first name
++ 'lastName' ... user last name
++ 'email' ... user registered email
++ 'location' ... user location
++ 'skillset' ... set of user skills
++ 'picture' ... string representation of picture?
++ 'projects' ... projects user is involved in currently
++ 'bio' ... short profile bio
++ 'status' ... status for a user
++ 'prevProj' ... previous projects the user has been involved in
 
 ### Affordances
 + These are functions used as HTTP requests (client -> server):
@@ -33,9 +60,27 @@ Resources of the **Projects API**
 + 'POST' ... Create a new user
 
 ### Create a new user [POST]
++ Request
+
+        {
+            "firstName": "John",
+            "lastName": "Jacob",
+            "picture": "/images/123.jpg",
+            "location": "Jingle",
+            "skillset": [
+                "Heimer",
+                "Schmidt"
+            ]
+        }
+
 + Response 201 (application/json)
 
-### Get all users base info [GET]
+        {
+            "id": 4333
+        }
+
+
+### Get all users base info - Intended for use with search [GET]
 + Response 200 (application/json)
 
         {
@@ -55,9 +100,7 @@ Resources of the **Projects API**
             "id": 2,
             "firstName": "Matt",
             "lastName": "Joe",
-            "picture": {
-                "href": "/images/3123.jpg"
-            },
+            "picture": "/images/3123.jpg",
             "location": "Chicaaaaaaago",
             "skillset": [
                 "toilet economics"
@@ -67,9 +110,7 @@ Resources of the **Projects API**
             "id": 43,
             "firstName": "Mick",
             "lastName": "Jagger",
-            "picture": {
-                "href": "/images/3.jpg"
-            },
+            "picture": "/images/3.jpg",
             "location": "Hell",
             "skillset": [
                 "Tofu",
@@ -80,9 +121,7 @@ Resources of the **Projects API**
             "id": 4333,
             "firstName": "John",
             "lastName": "Jacob",
-            "picture": {
-                "href": "/images/123.jpg"
-            },
+            "picture": "/images/123.jpg",
             "location": "Jingle",
             "skillset": [
                 "Heimer",
@@ -98,7 +137,7 @@ Resources of the **Projects API**
 + 'lastName' ... user last name
 + 'email' ... user registered email
 + 'location' ... user location
-+ 'skills' ... user skills
++ 'skillset' ... set of user skills
 + 'picture' ... string representation of picture?
 + 'projects' ... projects user is involved in currently
 + 'bio' ... short profile bio
@@ -115,170 +154,58 @@ Resources of the **Projects API**
     + id (required, int, `1`) ... id of the user to retrieve
 
         
-### Retrieve a user [GET]
+### Retrieve a single user [GET]
++ Request
+    
+        {
+            "id":4
+        }
+
 + Response 200 (application/json)
 
         {
-            "id": 1,
-            "name": "nick",
+            "id": 4,
+            "firstName": "nick",
+            "lastName": "malott",
             "email":"n@m.co",
             "location":"?",
             "skillset":["lasers","cannons","Lasercannons","kitten cannons","Canonical References"],
-            "picture":{"href": "/images/123.jpg"},
+            "picture":"/images/123.jpg",
             "projects":[1,2,3],
             "bio":"thisisabio",
+            "status":"Looking",
             "prevProj":[4,5]
         }
         
 ### Delete a user by id [DELETE]
-+ Response 202
++ Request
+        
+        {
+            "id": 2
+        }
+        
++ Response 202 (application/json)
 
 ### Update a user by id [PUT]
-+ Response 202
-
-## Proficiency [/proficiencies/{id}]
-### Attributes
-+ 'id' ... ID of the proficiency, server assigned
-+ 'skillId' ... ID of the skill referenced
-+ 'level' ... a rating of the proficiency with the skill
-
-
-+ Parameters
-    + id (required, init,`1`) ... id of the proficiency to retrieve
-    
-+ Model (application/hal+json)
-    
-    JSON Representation of a Proficiency
-    
-    + Body
-
-            {
-                "id": 1,
-                "skillId": 12,
-                "level": 2
-            }
-
-### Retrieve a single Proficiency [GET]
-+ Response 200
-
-    [Proficiency][]
-    
-### Update a Proficiency [PUT]
-To update a Proficiency send a JSON with updated value for one or more of the Proficiency resource attributes. All attributes values (states) from the previous version of this Proficiency are carried over by default if not included in the hash.
-
-+ Request (application/json)
-
-    + Body 
-    
-            {
-                "skillId": 12
-            }
-        
-    + Schema
-    
-            {
-                "type": "object",
-                "required": true,
-                "properties": {
-                    "skillId": {
-                        "type": ["string", "null"],
-                        "required": false
-                    },
-                    "level": {
-                        "type": "number",
-                        "required": false
-                    }
-                }
-            }
-        
-+ Response 202
-
-### Delete a proficiency [DELETE]
-+ Response 202
-
-
-## Proficiency Collection [/users/{id}/proficiencies]
-Access all the proficiencies belonging to a user and add new proficiencies to that user
-+ Parameters
-    + id (required, init,`1`) ... id of the user to retrieve
-    
-+ Model (application/hal+json)
-    
-    JSON Representation of a Proficiency
-
-    + Body
-    
-            [
-                {
-                    "id": 1,
-                    "skillId": 12,
-                    "level": 2
-                },
-                {
-                    "id": 2,
-                    "skillId": 13,
-                    "level": 3
-                }
-            ]
-            
-
-### List All Proficiencies [GET]
-+ Response 200 (application/json)
-
-    [Proficiency Collection][]
-
-### Create a Proficiency [POST]
-+ Request (application/json)
-
-    + Body 
-    
-            {
-                "skillId": 14,
-                "level": 5
-            }
-    
-    
-    + Schema
-    
-            {
-                "type": "object",
-                "required": true,
-                "properties": {
-                    "skillId": {
-                        "type": ["string"],
-                        "required": true
-                    },
-                    "level": {
-                        "type": "number",
-                        "required": true
-                    }
-                }
-            }
-        
-+ Response 201 (application/json)
-    
-    [Proficiency][]
-
-+ Response 400
-
-## Roles Collection [/roles]
-Collection of all roles
-
-### Attributes
-
-
-### Affordances
-+ These are functions used as HTTP requests (client -> server):
-
-
-### Search Roles [GET]
- + Response 200 (application/json)
++ Request
     
         {
-            "skills":[{12:2},
-                    {109:5},
-                    {123:9}]
+            "id": 1,
+            "firstName": "nick",
+            "lastName": "malott",
+            "email":"n@m.co",
+            "location":"?",
+            "skillset":["lasers","cannons","Lasercannons","kitten cannons","Canonical References"],
+            "picture":"/images/123.jpg",
+            "projects":[1,2,3],
+            "bio":"thisisabio",
+            "status":"Working, bruh",
+            "prevProj":[4,5]
         }
+
+    
++ Response 202 (application/json)
+
 
 
 
@@ -286,57 +213,35 @@ Collection of all roles
 
 # Group Skills
 
-## Skill [/skills/{id}]
-Individual skill within coollection of all skills
+## Skills Collection [/skills/]
+Master list of all skills
 
 ###Attributes
 + 'id' ... ID of the skill, server assigned
 + 'name' ... name of the skill, server assigned
 + 'description' ... description of the skill
 
-+ Model (application/json)
+###Affordances
++ These are functions used as HTTP requests (client -> server):
++ 'GET' ... retrieve all skills - used for search
++ 'POST' ... Add a skill
 
-    + Body
+### Get all skills - Used for search [GET]
++ Response 200 (application/json)
     
+        {
             {
-                "id":1,
-                "name":"Lasers",
-                "description": "Lasers and stuff"
+                "id":229,
+                "name":"Android UI Development",
+                "description": "Development of custom screens for Android applications"
+            },
+            {
+                "id":22894,
+                "name":"Karate",
+                "description": "Kicking and screaming",
             }
-            
-### Retrieve a single Skill [GET]
-+ Response 200 (application/json)
+        }
 
-    [Skill][]
-
-## Skills Collection [/skills{?name}]
-Master list of all skills
-
-+ Parameters
-    + name (optional, string, `LASERS`) ... name of the skill to search for, case insensitive
-
-+ Model (application/json)
-
-    + Body
-    
-            [
-                {
-                    "id":1,
-                    "name":"Lasers",
-                    "description": "Lasers and stuff"
-                },
-                {
-                    "id":2,
-                    "name":"Kittens",
-                    "description": "Purrr"
-                }   
-            ]
-
-### Search Skills [GET]
-+ Response 200 (application/json)
-
-    [Skills Collection][]
-    
 ### Create a new Skill [POST]
 + Request (application/json)
 
@@ -346,8 +251,41 @@ Master list of all skills
         }
 
 + Response 200 (application/json)
+    
+        {
+            "id":209"
+        }
 
-    [Skill][]
+
+## Skill [/skills/{id}]
+Individual skill within collection of all skills
+
+###Attributes
++ 'id' ... ID of the skill, server assigned
++ 'name' ... name of the skill, server assigned
++ 'description' ... description of the skill
+
+###Affordances
++ These are functions used as HTTP requests (client -> server):
++ 'GET' ... retrieve a single skill
+
++ Parameters
+    + id (optional, int, `1`) ... id of the skill
+
+            
+### Retrieve a single Skill [GET]
++ Response 200 (application/json)
+
+        {
+            "id":344,
+            "name":"Android UI Development",
+            "description": "Development of custom screens for Android applications"
+        }
+
+
+
+
+
 
 # Group Projects
 
@@ -356,107 +294,114 @@ All projects are stored here with unique identifiers
 
 ###Attributes
 + 'id' ... ID of the project, server assigned
++ 'name' ... Name of the project
++ 'subName' ... Tag line for the project
++ 'description' ... Description of the project
++ 'created' ... Date project created
++ 'lastUpdated' ... Date project last updated
++ 'manager' ... Project manager/owner ID
++ 'picture' ... picture for project
 
 ###Affordances
 + These are functions used as HTTP requests (client -> server):
-+ 'show' ('self') ... Show all projects
++ 'GET' ... Get all projects - Used for search
 
-+ Model (application/json)
 
-### Search all projects [GET]
+### Get all projects - Used for search [GET]
 + Response 200 (application/json)
 
         [
             {
-                "id": 34,
-                "name": "LaserCannon V0.1",
-                "subName": "A cannon for lasers",
-                "created": "June 10th, 2014",
-                "manager": "Alain Kuchta"
+                "id":2,
+                "name": "ThisIsMyProj",
+                "subname": "AndSubname",
+                "description":"Thang",
+                "competencies":["defi","AndSame"],
+                "lastUpdated":"3/27/2014 05:22:35",
+                "manager":12345,
+                "picture":"/images/123.jpg"
             },
             {
-                "id": 22,
-                "firstName": "Matt",
-                "lastName": "Joe",
-                "picture": {
-                    "href": "/images/3123.jpg"
-                },
-                "location": "Chicaaaaaaago",
-                "skillset": [
-                    "toilet economics"
-                ]
+                "id":3,
+                "name": "ThisIsMyProj",
+                "subname": "AndSubname",
+                "description":"Thang",
+                "competencies":["defi","AndSame"],
+                "lastUpdated":"3/27/2014 05:22:35",
+                "manager":12345,
+                "picture":"/images/123.jpg"
             },
             {
-                "id": 493,
-                "firstName": "Mick",
-                "lastName": "Jagger",
-                "picture": {
-                    "href": "/images/3.jpg"
-                },
-                "location": "Hell",
-                "skillset": [
-                    "Tofu",
-                    "Not Tofu"
-                ]
-            },
-            {
-                "id": 8008135,
-                "firstName": "John",
-                "lastName": "Jacob",
-                "picture": {
-                    "href": "/images/123.jpg"
-                },
-                "location": "Jingle",
-                "skillset": [
-                    "Heimer",
-                    "Schmidt"
-                ]
+                "id":5,
+                "name": "ThisIsMyProj",
+                "subname": "AndSubname",
+                "description":"Thang",
+                "competencies":["defi","AndSame"],
+                "lastUpdated":"3/27/2014 05:22:35",
+                "manager":12345,
+                "picture":"/images/123.jpg"
             }
         ]
 
 
+
+
 ## Projects [/projects/{id}]
-Where all the uncool projects are.
 
 ### Attributes
 + 'id' ... ID of the project, server assigned
 + 'name' ... Name of the project
 + 'subName' ... Tag line for the project
++ 'description' ... Description of the project
 + 'created' ... Date project created
 + 'lastUpdated' ... Date project last updated
-+ 'manager' ... Project manager/owner
-+ 'description' ... Description of the project
++ 'manager' ... Project manager/owner ID
 + 'picture' ... picture for project
-+ 'meta' ... Catch all
 
 
 ###Affordances
 + These are functions used as HTTP requests (client -> server):
-+ 'show' ('self') ... A single project
-+ 'edit' ... Update or delete a project
++ 'GET' ... gets the specified project by ID
++ 'PUT' ... Update a project
++ 'DELETE' ... Delete a project
 
 + Parameters
-    + id (optional, int, `1`) ... Numeric `id` of the folder to perform action with. Has example value.
+    + id (optional, int, `1`) ... Numeric `id` of the folder to perform action with.
     
-+ Model (application/json)
-       
+
 ### Retrieve a single project [GET]
-+ Response 200 (application/json)
++ Request
 
         {
-            "id": 1,
-            "title": "LaserCannons",
-            "description":"It will be large and destructive",
-            "compentencies":["lasers","cannons"]
+            "id":2
         }
 
-### Create a Project [POST]
-+ Request (application/json)
++ Response 200 (application/json)
 
-        { 
-            "title": "Buy cheese and bread for breakfast." }
+### Update a project [PUT]
++ Request
+    
+        {
+            "id":2,
+            "name": "NewTitle",
+            "subname": "ButSameSubname",
+            "description":"ThisMayRemainUnchanged",
+            "competencies":["same","AndSame"],
+            "lastUpdated":"NOW"
+            "manager":12345,
+            "picture":"/images/123.jpg"
+        }
+            
 
-+ Response 201 (application/json)
++ Response 202 (application/json)
 
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+
+### Delete a project [DELETE]
++ Request
+        
+        {
+            "id":2
+        }
+        
++ Response 202 (application/json)
 
