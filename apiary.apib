@@ -4,7 +4,7 @@ HOST: http://www.google.com
 # TeamMachine
 Team Machine
 
-# Group Projects
+# Group Root
 Resources of the **Projects API**
 
 
@@ -30,6 +30,7 @@ Resources of the **Projects API**
         }
 
 
+# Group Users
 
 ## User Collection [/users]
 + Root collection of all users
@@ -150,44 +151,6 @@ Resources of the **Projects API**
 ### Update a user by id [PUT]
 + Response 202
 
-
-
-# Group Proficiency
-All resources related to users
-
-## Proficiency Collection [/users/{id}/proficiencies]
-
-+ Parameters
-    + id (required, init,`1`) ... id of the user to retrieve
-    
-+ Model (application/hal+json)
-    
-    JSON Representation of a Proficiency
-    
-    + Body
-    
-            [
-                {
-                    "id": 1,
-                    "skillId": 12,
-                    "level": 2
-                }
-            ]
-            
-
-### List All Proficiencies [GET]
-+ Response 200 (application/json)
-
-        [Proficiency Collection][]
-
-### Create a Proficiency [POST]
-+ Response 201
-
-        {
-            "skillId": 457,
-            "level": 2
-        }
-
 ## Proficiency [/users/{userId}/proficiencies/{profId}]
 
 + Parameters
@@ -220,8 +183,40 @@ All resources related to users
 + Response 202
 
 
+## Proficiency Collection [/users/{id}/proficiencies]
 
++ Parameters
+    + id (required, init,`1`) ... id of the user to retrieve
+    
++ Model (application/hal+json)
+    
+    JSON Representation of a Proficiency
 
+    + Body
+    
+            [
+                {
+                    "id": 1,
+                    "skillId": 12,
+                    "level": 2
+                },
+                {
+                    "id": 2,
+                    "skillId": 13,
+                    "level": 3
+                },
+            ]
+            
+
+### List All Proficiencies [GET]
++ Response 200 (application/json)
+
+    [Proficiency Collection][]
+
+### Create a Proficiency [POST]
++ Response 201
+    
+    [Proficiency][]
 
 
 
@@ -280,6 +275,7 @@ Individual skill within coollection of all skills
 
 
 
+# Group Projects
 
 ## Project Collection [/projects]
 All projects are stored here with unique identifiers
