@@ -170,7 +170,6 @@ Resources of the **Projects API**
                 "level": 2
             }
 
-
 ### Retrieve a single Proficiency [GET]
 + Response 200
 
@@ -181,9 +180,29 @@ To update a Proficiency send a JSON with updated value for one or more of the Pr
 
 + Request (application/json)
 
-        {
-            "content": "Updated file contents"
-        }
+    + Body 
+    
+            {
+                "skillId": 12
+            }
+        
+    + Schema
+    
+            {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "skillId": {
+                        "type": ["string", "null"],
+                        "required": false
+                    },
+                    "level": {
+                        "type": "number",
+                        "required": false
+                    }
+                }
+            }
+        
 + Response 202
 
 ### Delete a proficiency [DELETE]
@@ -223,11 +242,31 @@ Access all the proficiencies belonging to a user and add new proficiencies to th
 ### Create a Proficiency [POST]
 + Request (application/json)
 
-        {
-            "skillId": 14,
-            "level": 5
-        }
+    + Body 
     
+            {
+                "skillId": 14,
+                "level": 5
+            }
+    
+    
+    + Schema
+    
+            {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "skillId": {
+                        "type": ["string", "null"],
+                        "required": false
+                    },
+                    "level": {
+                        "type": "number",
+                        "required": false
+                    }
+                }
+            }
+        
 + Response 201
     
     [Proficiency][]
