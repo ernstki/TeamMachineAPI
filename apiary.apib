@@ -169,12 +169,24 @@ Location of user's expeience/skills
 
 ### 'Show' [GET]
 + Response 200 (application/json)
-        
-        {
-            "proficiency":[{"id":12},{"level":2},
-                    {"id":356},{"level":7},
-                    {"id":122},{"level":9}]
-        }
+
+        [
+            {
+                "id": 1,
+                "skillId": 12,
+                "level": 2
+            },
+            {
+                "id": 2,
+                "skillId": 356,
+                "level": 7
+            },
+            {
+                "id": 3,
+                "skillId": 122,
+                "level": 9
+            }
+        ]
 
 ### Update Experience [PUT]
 + Response 202
