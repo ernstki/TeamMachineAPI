@@ -297,11 +297,14 @@ All projects are stored here with unique identifiers
 + 'GET' ... Get all projects - Used for search
 
 ###Search Parameters
-+ Parameters -- Use ?search(name)="name"&search(owner)="owner"
-    + name (optional, string, `Kitten`) ... search projects by name
-    + subName (optional, string, `Kitten`) ... search projects by subName
-    + lastUpdated (optional, string, `15`) ... search projects by lastUpdated by # of days
-    + owner (optional, string, `Stalin`) ... search projects by owner name
+Search is accomplished by including a hash in the query params called *search*. This hash contains key value pairs where the key is the name of the filter to use and the value is the value to filter on.
+below are the filter names. DO NOT use quotes around values.
+
+* Parameters -- Append `?search[filter_name]=value&search[another_filter]=anothervalue` to URI
+    * name_like (optional, string, `Kitten`) ... search for projects whose name contains `Kitten`
+    * subName_like (optional, string, `Kitten`) ... search projects who name contains `Kitten`
+    * updated_since (optional, string, `2014-07-10T18:38:34.389Z`) ... search for projects whose last updated date is after `2014-07-10T18:38:34.389Z`
+    * owner_id_is (optional, string, `1`) ... search projects whose owner id is `1`
 
 ### Get all projects - Used for search [GET]
 + Response 200 (application/json)
