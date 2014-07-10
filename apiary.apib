@@ -48,14 +48,17 @@ Resources of the **Projects API**
 + 'POST' ... Create a new user
 
 ###Search Parameters
-+ Parameters -- Use ?search(firstName)="firstName"&search(projects)="projects"
-    + firstname (optional, string, `John`) ... search users by first name
-    + lastName (optional, string, `Mots`) ... search users by last name
-    + email (optional, string, `mots@john.com`) ... search users by email
-    + location (optional, string, `Cincinnati`) ... search users by location
-    + skill (optional, string, `Android`) ... search users by a skill
-    + projects (optional, string, `Lasers`) ... search users by active projects
-    + prevProjects (optional, string, `suchAProject`) ... search users by previous projects
+Search is accomplished by including a hash in the query params called *search*. This hash contains key value pairs where the key is the name of the filter to use and the value is the value to filter on.
+below are the filter names. DO NOT use quotes around values.
+
+* Parameters -- Append `?search[filter_name]=value&search[another_filter]=anothervalue` to URI
+    * firstname_like (optional, string, `John`) ... search users by first name containing `John`
+    * lastName_like (optional, string, `Mots`) ... search users by last name containing `Mots`
+    * email_like (optional, string, `mots@john.com`) ... search users by email containing `mots@john.com`
+    * location_like (optional, string, `Cincinnati`) ... search users by location containing `Cincinnati`
+    * skill_like (optional, string, `Android`) ... search users by a skill containing `Android`
+    * projects_like (optional, string, `Lasers`) ... search users by active projects containing `Lasers`
+    * prevProjects_like (optional, string, `suchAProject`) ... search users by previous projects containing `suchAProject`
 
 ### Get all users base info - Intended for use with search [GET]
 + Response 200 (application/json)
@@ -213,8 +216,11 @@ Master list of all skills
 + 'POST' ... Add a skill
 
 ###Search Parameters
-+ Parameters -- Use ?search(skill)="skill"
-    + skill (optional, string, `Android`) ... search skills by skill name
+Search is accomplished by including a hash in the query params called *search*. This hash contains key value pairs where the key is the name of the filter to use and the value is the value to filter on.
+below are the filter names. DO NOT use quotes around values.
+
+* Parameters -- Append `?search[filter_name]=value&search[another_filter]=anothervalue` to URI
+    * skill_like (optional, string, `Android') ... search skills by skill name containing 'Android'
 
 ### Get all skills - Used for search [GET]
 + Response 200 (application/json)
