@@ -4,8 +4,9 @@ HOST: http://www.google.com
 # TeamMachine API v0.3
 Team Machine API Specification
 
-#####v0.3: Updating 
+#####v0.3: Removing Request Bodies (Get/Delete); Updating Search Params; adding name/id to proj. owner, various updates
 #####v0.2: Initial Build Release
+#####v0.1: Creation of Apiary Project
 
 
 # Group Root
@@ -19,6 +20,7 @@ Resources of the **Projects API**
 #### Definitions:
 + Attributes: Stored properties of the URI
 + Affordances: These are functions used as HTTP requests (client -> server):
++ Search Parameters: Used to query server to search DB
 
 
 
@@ -45,29 +47,8 @@ Resources of the **Projects API**
 + 'GET' ... search for user(s) with query parameters (Returns [id, firstName, lastName, picture, location, skillset])
 + 'POST' ... Create a new user
 
-### Create a new user [POST]
-+ Request
-
-        {
-            "firstName": "John",
-            "lastName": "Jacob",
-            "picture": "/images/123.jpg",
-            "location": "Jingle",
-            "skillset": [
-                "Heimer",
-                "Schmidt"
-            ]
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "id": 4333
-        }
-
-
-### Get all users base info - Intended for use with search [GET]
-+ Parameters
+###Search Parameters
++ Parameters -- Use ?search(firstName)="firstName"&search(projects)="projects"
     + firstname (optional, string, `John`) ... search users by first name
     + lastName (optional, string, `Mots`) ... search users by last name
     + email (optional, string, `mots@john.com`) ... search users by email
@@ -76,6 +57,7 @@ Resources of the **Projects API**
     + projects (optional, string, `Lasers`) ... search users by active projects
     + prevProjects (optional, string, `suchAProject`) ... search users by previous projects
 
+### Get all users base info - Intended for use with search [GET]
 + Response 200 (application/json)
 
         {
@@ -123,6 +105,27 @@ Resources of the **Projects API**
                 "Schmidt"
             ]
         }
+        
+### Create a new user [POST]
++ Request
+
+        {
+            "firstName": "John",
+            "lastName": "Jacob",
+            "picture": "/images/123.jpg",
+            "location": "Jingle",
+            "skillset": [
+                "Heimer",
+                "Schmidt"
+            ]
+        }
+
++ Response 201 (application/json)
+
+        {
+            "id": 4333
+        }
+        
 
 ## Individual User [/users/{id}]
 
@@ -209,10 +212,11 @@ Master list of all skills
 + 'GET' ... retrieve all skills - used for search
 + 'POST' ... Add a skill
 
-### Get all skills - Used for search [GET]
-+ Parameters
+###Search Parameters
++ Parameters -- Use ?search(skill)="skill"
     + skill (optional, string, `Android`) ... search skills by skill name
 
+### Get all skills - Used for search [GET]
 + Response 200 (application/json)
     
         {
@@ -285,23 +289,21 @@ All projects are stored here with unique identifiers
 + 'description' ... Description of the project
 + 'created' ... Date project created
 + 'lastUpdated' ... Date project last updated
-+ 'manager' ... Project manager/owner ID
++ 'owner' ... Project owner ID/name
 + 'picture' ... picture for project
 
 ###Affordances
 + These are functions used as HTTP requests (client -> server):
 + 'GET' ... Get all projects - Used for search
 
-
-### Get all projects - Used for search [GET]
-+ Parameters
+###Search Parameters
++ Parameters -- Use ?search(name)="name"&search(owner)="owner"
     + name (optional, string, `Kitten`) ... search projects by name
     + subName (optional, string, `Kitten`) ... search projects by subName
     + lastUpdated (optional, string, `15`) ... search projects by lastUpdated by # of days
-    + manager (optional, string, `Stalin`) ... search projects by manager name
-    
+    + owner (optional, string, `Stalin`) ... search projects by owner name
 
-
+### Get all projects - Used for search [GET]
 + Response 200 (application/json)
 
         [
@@ -312,7 +314,7 @@ All projects are stored here with unique identifiers
                 "description":"Thang",
                 "competencies":["defi","AndSame"],
                 "lastUpdated":"3/27/2014 05:22:35",
-                "manager":
+                "owner":
                 {
                     "id":1,
                     "name":"Joe Schmoe"
@@ -327,7 +329,7 @@ All projects are stored here with unique identifiers
                 "description":"Thang",
                 "competencies":["defi","AndSame"],
                 "lastUpdated":"3/27/2014 05:22:35",
-                "manager":
+                "owner":
                 {
                     "id":3,
                     "name":"John Schmoe"
@@ -342,7 +344,7 @@ All projects are stored here with unique identifiers
                 "description":"Thang",
                 "competencies":["defi","AndSame"],
                 "lastUpdated":"3/27/2014 05:22:35",
-                "manager":
+                "owner":
                 {
                     "id":12,
                     "name":"Joe Toe"
@@ -364,9 +366,8 @@ All projects are stored here with unique identifiers
 + 'description' ... Description of the project
 + 'created' ... Date project created
 + 'lastUpdated' ... Date project last updated
-+ 'manager' ... Project manager/owner ID
++ 'owner' ... Project owner ID
 + 'picture' ... picture for project
-
 
 ###Affordances
 + These are functions used as HTTP requests (client -> server):
@@ -388,7 +389,12 @@ All projects are stored here with unique identifiers
             "description":"Thang",
             "competencies":["defi","AndSame"],
             "lastUpdated":"3/27/2014 05:22:35",
-            "manager":12345,
+            "owner":
+                {
+                    "id":1,
+                    "name":"Joe Schmoe"
+                
+                },
             "picture":"/images/123.jpg"
         }
 
@@ -403,7 +409,12 @@ All projects are stored here with unique identifiers
             "description":"ThisMayRemainUnchanged",
             "competencies":["same","AndSame"],
             "lastUpdated":"NOW"
-            "manager":12345,
+            "owner":
+                {
+                    "id":1,
+                    "name":"Joe Schmoe"
+                
+                },
             "picture":"/images/123.jpg"
         }
             
@@ -412,8 +423,5 @@ All projects are stored here with unique identifiers
 
 
 ### Delete a project [DELETE]
-+ Request
-        
-        
 + Response 202 (application/json)
 
