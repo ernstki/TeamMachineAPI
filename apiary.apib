@@ -4,7 +4,8 @@ HOST: http://www.google.com
 # TeamMachine API v0.3
 Team Machine API Specification
 
-
+#####v0.3: Updating 
+#####v0.2: Initial Build Release
 
 
 # Group Root
@@ -149,9 +150,6 @@ Resources of the **Projects API**
 
         
 ### Retrieve a single user [GET]
-+ Request
-    
-
 + Response 200 (application/json)
 
         {
@@ -169,9 +167,6 @@ Resources of the **Projects API**
         }
         
 ### Delete a user by id [DELETE]
-+ Request
-        
-        
 + Response 202 (application/json)
 
 ### Update a user by id [PUT]
@@ -317,7 +312,12 @@ All projects are stored here with unique identifiers
                 "description":"Thang",
                 "competencies":["defi","AndSame"],
                 "lastUpdated":"3/27/2014 05:22:35",
-                "manager":12345,
+                "manager":
+                {
+                    "id":1,
+                    "name":"Joe Schmoe"
+                
+                },
                 "picture":"/images/123.jpg"
             },
             {
@@ -327,7 +327,12 @@ All projects are stored here with unique identifiers
                 "description":"Thang",
                 "competencies":["defi","AndSame"],
                 "lastUpdated":"3/27/2014 05:22:35",
-                "manager":12345,
+                "manager":
+                {
+                    "id":3,
+                    "name":"John Schmoe"
+                
+                },
                 "picture":"/images/123.jpg"
             },
             {
@@ -337,7 +342,12 @@ All projects are stored here with unique identifiers
                 "description":"Thang",
                 "competencies":["defi","AndSame"],
                 "lastUpdated":"3/27/2014 05:22:35",
-                "manager":12345,
+                "manager":
+                {
+                    "id":12,
+                    "name":"Joe Toe"
+                
+                },
                 "picture":"/images/123.jpg"
             }
         ]
