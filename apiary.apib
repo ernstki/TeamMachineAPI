@@ -473,6 +473,7 @@ below are the filter names. DO NOT use quotes around values.
 ### Delete a project [DELETE]
 + Response 202 (application/json)
 
+# Group Roles
 
 ## Roles [/roles/{id}]
 
@@ -497,40 +498,29 @@ below are the filter names. DO NOT use quotes around values.
 + Parameters
     + id (optional, int, `1`) ... Numeric `id` of the folder to perform action with.
     
-
-### Retrieve a single skill [GET]
+### Retrieve a single role [GET]
 + Response 200 (application/json)
 
         {
             "id":5,
-            "name": "ThisIsMyProj",
-            "subname": "AndSubname",
-            "description":"Thang",
-            "competencies":["defi","AndSame"],
-            "lastUpdated":"3/27/2014 05:22:35",
-            "owner":
-                {
-                    "id":1,
-                    "name":"Joe Schmoe"
-                
-                },
-            "picture":"/images/123.jpg"
+            "name": "Marmot Wrangler",
+            "description": "The team member who wrangles the marmot(s)",
+            "created": "3/27/2014 05:22:35",
+            "lastUpdated": "3/27/2014 05:22:35",
         }
 
 
-### Update a skill [PUT]
+### Create or update a role [PUT]
 + Request
     
         {
             "name": "Keeper of the Keys",
-            "description": "ThisMayRemainUnchanged",
-            "competencies": ["same","AndSame"],
+            "description": "The team member who keeps the key(s)"
         }
-            
 
 + Response 202 (application/json)
 
 
-### Delete a skill [DELETE]
+### Delete a role [DELETE]
 + Response 202 (application/json)
 
