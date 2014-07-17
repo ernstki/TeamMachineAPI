@@ -4,9 +4,24 @@ HOST: http://www.google.com
 # TeamMachine API v0.3
 Team Machine API Specification
 
-#####v0.3: Removing Request Bodies (Get/Delete); Updating Search Params; adding name/id to proj. owner, various updates
-#####v0.2: Initial Build Release
-#####v0.1: Creation of Apiary Project
+<table>
+<tr><th align="left">
+        Version</th>
+       <th align="left">Description</th></tr>
+<tr><td valign="top">
+        0.3.1</td> <td>Added "Role" endpoint; removed updated/created from
+                       <code>PUT</code> requests and updated description of
+                       updated/created in several places to clarify that these are
+                       assigned/modified by the server and not required to be sent
+                       by the client in <code>PUT</code> requests</td></tr>
+<tr><td valign="top">
+        0.3</td>   <td>Removing Request Bodies (Get/Delete); Updating Search Params;
+                       adding name/id to proj. owner, various updates</td></tr>
+<tr><td valign="top">
+        0.2</td>   <td>Initial Build Release</td></tr>
+<tr><td valign="top">
+        0.1</td>   <td>Creation of Apiary Project</td></tr>
+</table>
 
 
 # Group Root
@@ -19,7 +34,7 @@ Resources of the **Projects API**
 
 #### Definitions:
 + Attributes: Stored properties of the URI
-+ Affordances: These are functions used as HTTP requests (client -> server):
++ Affordances: These are functions used as HTTP requests (client &rarr; server):
 + Search Parameters: Used to query server to search DB
 
 
@@ -30,17 +45,22 @@ Resources of the **Projects API**
 + Root collection of all users
 
 ### Attributes
-+ 'id' ... Subset of each user within collection
-+ 'firstName' ... user first name
-+ 'lastName' ... user last name
-+ 'email' ... user registered email
-+ 'location' ... user location
-+ 'skillset' ... set of user skills
-+ 'picture' ... string representation of picture?
-+ 'projects' ... projects user is involved in currently
-+ 'bio' ... short profile bio
-+ 'status' ... status for a user
-+ 'prevProj' ... previous projects the user has been involved in
+<table>
+<tr><th align="left">
+          Name</th>
+          <th align="left">Description</th></tr>
+<tr><td>id</td>        <td>ID of user (<em>server assigned on create</em>)</td></tr>
+<tr><td>firstName</td> <td>user first name</td></tr>
+<tr><td>lastName</td>  <td>user last name</td></tr>
+<tr><td>email</td>     <td>user registered email</td></tr>
+<tr><td>location</td>  <td>user location</td></tr>
+<tr><td>skillset</td>  <td>set of user skills</td></tr>
+<tr><td>picture</td>   <td>path to image on filesystem or reserved literal <code>#GRAVATAR</code></td></tr>
+<tr><td>projects</td>  <td>projects user is involved in currently</td></tr>
+<tr><td>bio</td>       <td>short profile bio</td></tr>
+<tr><td>status</td>    <td>status a user</td></tr>
+<tr><td>prevProj</td>  <td>previous projects user been involved in</td></tr>
+</table>
 
 ### Affordances
 + These are functions used as HTTP requests (client -> server):
@@ -133,20 +153,26 @@ below are the filter names. DO NOT use quotes around values.
 ## Individual User [/users/{id}]
 
 ### Attributes
-+ 'id' ... ID of the user, server assigned
-+ 'firstName' ... user first name
-+ 'lastName' ... user last name
-+ 'email' ... user registered email
-+ 'location' ... user location
-+ 'skillset' ... set of user skills
-+ 'picture' ... string representation of picture?
-+ 'projects' ... projects user is involved in currently
-+ 'bio' ... short profile bio
-+ 'status' ... status for a user
-+ 'prevProj' ... previous projects the user has been involved in
+<table>
+<tr><th align="left">
+          Name</th>
+          <th align="left">Description</th></tr>
+<tr><td>id</td>        <td>ID of user (<em>server assigned on create</em>)</td></tr>
+<tr><td>firstName</td> <td>user first name</td></tr>
+<tr><td>lastName</td>  <td>user last name</td></tr>
+<tr><td>email</td>     <td>user registered email</td></tr>
+<tr><td>location</td>  <td>user location</td></tr>
+<tr><td>skillset</td>  <td>set of user skills</td></tr>
+<tr><td>picture</td>   <td>path to image on filesystem or reserved literal <code>#GRAVATAR</code></td></tr>
+<tr><td>projects</td>  <td>projects user is involved in currently</td></tr>
+<tr><td>bio</td>       <td>short profile bio</td></tr>
+<tr><td>status</td>    <td>status a user</td></tr>
+<tr><td>prevProj</td>  <td>previous projects user been involved in</td></tr>
+</table>
+
 
 ### Affordances
-+ These are functions used as HTTP requests (client -> server):
++ These are functions used as HTTP requests (client &rarr; server):
 + 'GET' ... Retrieve a user
 + 'PUT' ... Update a user
 + 'DELETE' ... Delete a user
@@ -192,12 +218,7 @@ below are the filter names. DO NOT use quotes around values.
             "prevProj":[4,5]
         }
 
-    
 + Response 202 (application/json)
-
-
-
-
 
 
 # Group Skills
@@ -206,12 +227,18 @@ below are the filter names. DO NOT use quotes around values.
 Master list of all skills
 
 ###Attributes
-+ 'id' ... ID of the skill, server assigned
-+ 'name' ... name of the skill, server assigned
-+ 'description' ... description of the skill
+<table>
+<tr><th align="left">
+        Name</th><th align="left">
+                             Description</th></tr>
+<tr><td>id</td>          <td>ID of skill (<em>server assigned on create</em>)</td></tr>
+<tr><td>name</td>        <td>name of skill</td></tr>
+<tr><td>description</td> <td>description of skill</td></tr>
+</table>
+
 
 ###Affordances
-+ These are functions used as HTTP requests (client -> server):
++ These are functions used as HTTP requests (client &rarr; server):
 + 'GET' ... retrieve all skills - used for search
 + 'POST' ... Add a skill
 
@@ -253,16 +280,22 @@ below are the filter names. DO NOT use quotes around values.
         }
 
 
+
 ## Skill [/skills/{id}]
 Individual skill within collection of all skills
 
 ###Attributes
-+ 'id' ... ID of the skill, server assigned
-+ 'name' ... name of the skill, server assigned
-+ 'description' ... description of the skill
+<table>
+<tr><th align="left">
+        Name</th><th align="left">
+                             Description</th></tr>
+<tr><td>id</td>          <td>ID of skill (<em>server assigned on create</em>)</td></tr>
+<tr><td>name</td>        <td>name of skill</td></tr>
+<tr><td>description</td> <td>description of skill</td></tr>
+</table>
 
 ###Affordances
-+ These are functions used as HTTP requests (client -> server):
++ These are functions used as HTTP requests (client &rarr; server):
 + 'GET' ... retrieve a single skill
 
 + Parameters
@@ -280,26 +313,27 @@ Individual skill within collection of all skills
 
 
 
-
-
-
 # Group Projects
 
 ## Project Collection [/projects]
 All projects are stored here with unique identifiers
 
-###Attributes
-+ 'id' ... ID of the project, server assigned
-+ 'name' ... Name of the project
-+ 'subName' ... Tag line for the project
-+ 'description' ... Description of the project
-+ 'created' ... Date project created
-+ 'lastUpdated' ... Date project last updated
-+ 'owner' ... Project owner ID/name
-+ 'picture' ... picture for project
+### Attributes
+<table><th align="left">
+        Name</th>
+            <th align="left">Description</th></tr>
+<tr><td>id</td>          <td>ID of the project (<em>server assigned on create</em>)</td></tr>
+<tr><td>name</td>        <td>Name of the project</td></tr>
+<tr><td>subName</td>     <td>Tag line for the project</td></tr>
+<tr><td>description</td> <td>Description of the project</td></tr>
+<tr><td>owner</td>       <td>Project owner ID</td></tr>
+<tr><td>picture</td>     <td>picture for project</td></tr>
+<tr><td>created</td>     <td>Date project created (<em>server assigned on create</em>)</td></tr>
+<tr><td>lastUpdated</td> <td>Date project last updated (<em>server assigned on create/update</em>)</td></tr>
+</table>
 
 ###Affordances
-+ These are functions used as HTTP requests (client -> server):
++ These are functions used as HTTP requests (client &rarr; server):
 + 'GET' ... Get all projects - Used for search
 
 ###Search Parameters
@@ -369,17 +403,22 @@ below are the filter names. DO NOT use quotes around values.
 ## Projects [/projects/{id}]
 
 ### Attributes
-+ 'id' ... ID of the project, server assignedj
-+ 'name' ... Name of the project
-+ 'subName' ... Tag line for the project
-+ 'description' ... Description of the project
-+ 'created' ... Date project created
-+ 'lastUpdated' ... Date project last updated
-+ 'owner' ... Project owner ID
-+ 'picture' ... picture for project
+<table><th align="left">
+        Name</th>
+            <th align="left">Description</th></tr>
+<tr><td>id</td>          <td>ID of the project (<em>server assigned on create</em>)</td></tr>
+<tr><td>name</td>        <td>Name of the project</td></tr>
+<tr><td>subName</td>     <td>Tag line for the project</td></tr>
+<tr><td>description</td> <td>Description of the project</td></tr>
+<tr><td>owner</td>       <td>Project owner ID</td></tr>
+<tr><td>picture</td>     <td>picture for project</td></tr>
+<tr><td>created</td>     <td>Date project created (<em>server assigned on create</em>)</td></tr>
+<tr><td>lastUpdated</td> <td>Date project last updated (<em>server assigned on create/update</em>)</td></tr>
+</table>
+
 
 ###Affordances
-+ These are functions used as HTTP requests (client -> server):
++ These are functions used as HTTP requests (client &rarr; server):
 + 'GET' ... gets the specified project by ID
 + 'PUT' ... Update a project
 + 'DELETE' ... Delete a project
@@ -432,5 +471,66 @@ below are the filter names. DO NOT use quotes around values.
 
 
 ### Delete a project [DELETE]
++ Response 202 (application/json)
+
+
+## Roles [/roles/{id}]
+
+### Attributes
+<table>
+<tr><th align="left">
+        Name</th>
+            <th align="left">Description</th></tr>
+<tr><td>id</td>          <td>ID of the role (<em>server assigned on create</em>)</td></tr>
+<tr><td>name</td>        <td>Name of the role</td></tr>
+<tr><td>description</td> <td>Description of the role</td></tr>
+<tr><td>created</td>     <td>Date role created (<em>server assigned on create</em>)</td></tr>
+<tr><td>lastUpdated</td> <td>Date role last updated (<em>server assigned on create/update</em>)</td></tr>
+</table>
+
+###Affordances
++ These are functions used as HTTP requests (client &rarr; server):
++ 'GET' ... gets the specified role by ID
++ 'PUT' ... Create or update a role
++ 'DELETE' ... Delete a role
+
++ Parameters
+    + id (optional, int, `1`) ... Numeric `id` of the folder to perform action with.
+    
+
+### Retrieve a single skill [GET]
++ Response 200 (application/json)
+
+        {
+            "id":5,
+            "name": "ThisIsMyProj",
+            "subname": "AndSubname",
+            "description":"Thang",
+            "competencies":["defi","AndSame"],
+            "lastUpdated":"3/27/2014 05:22:35",
+            "owner":
+                {
+                    "id":1,
+                    "name":"Joe Schmoe"
+                
+                },
+            "picture":"/images/123.jpg"
+        }
+
+
+### Update a skill [PUT]
++ Request
+    
+        {
+            "name": "Keeper of the Keys",
+            "description": "ThisMayRemainUnchanged",
+            "competencies": ["same","AndSame"],
+        }
+            
+
++ Response 202 (application/json)
+
+
+### Delete a skill [DELETE]
 + Response 202 (application/json)
 
