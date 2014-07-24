@@ -85,48 +85,35 @@ below are the filter names. DO NOT use quotes around values.
 
         {
             "id": 1,
-            "firstName": "Nick",
-            "lastName": "Malott",
-            "picture": "/images/123.jpg",
-            "location": "Cincinnati",
-            "skillset": [
-                "lasers",
-                "cannons",
-                "lasercannons",
-                "popcorn"
-            ]
-        },
-        {
-            "id": 2,
-            "firstName": "Matt",
-            "lastName": "Joe",
-            "picture": "/images/3123.jpg",
-            "location": "Chicaaaaaaago",
-            "skillset": [
-                "toilet economics"
-            ]
-        },
-        {
-            "id": 43,
-            "firstName": "Mick",
-            "lastName": "Jagger",
-            "picture": "/images/3.jpg",
-            "location": "Hell",
-            "skillset": [
-                "Tofu",
-                "Not Tofu"
-            ]
-        },
-        {
-            "id": 4333,
             "firstName": "John",
-            "lastName": "Jacob",
-            "picture": "/images/123.jpg",
-            "location": "Jingle",
-            "skillset": [
-                "Heimer",
-                "Schmidt"
+            "lastName": "Doe",
+            "created_at": "2014-07-14T21:19:56.091Z",
+            "updated_at": "2014-07-14T21:19:56.091Z",
+            "email": null,
+            "picture": {
+                "url": null
+            },
+            "skills": [
+                {
+                    "id": 1,
+                    "name": "Dancing",
+                    "description": "Kind of gay",
+                    "created_at": "2014-07-19T23:42:16.048Z",
+                    "updated_at": "2014-07-19T23:42:16.048Z"
+                }
             ]
+        },
+        {
+            "id": 3,
+            "firstName": "John",
+            "lastName": "Doe",
+            "created_at": "2014-07-14T21:26:42.018Z",
+            "updated_at": "2014-07-14T21:26:42.018Z",
+            "email": null,
+            "picture": {
+                "url": null
+            },
+            "skills": []
         }
         
 ### Create a new user [POST]
@@ -185,17 +172,24 @@ below are the filter names. DO NOT use quotes around values.
 + Response 200 (application/json)
 
         {
-            "id": 4,
-            "firstName": "nick",
-            "lastName": "malott",
-            "email":"n@m.co",
-            "location":"?",
-            "skillset":["lasers","cannons","Lasercannons","kitten cannons","Canonical References"],
-            "picture":"/images/123.jpg",
-            "projects":[1,2,3],
-            "bio":"thisisabio",
-            "status":"Looking",
-            "prevProj":[4,5]
+            "id": 1,
+            "firstName": "John",
+            "lastName": "Doe",
+            "created_at": "2014-07-14T21:19:56.091Z",
+            "updated_at": "2014-07-14T21:19:56.091Z",
+            "email": null,
+            "picture": {
+                "url": null
+            },
+            "skills": [
+                {
+                    "id": 1,
+                    "name": "Dancing",
+                    "description": "Kind of gay",
+                    "created_at": "2014-07-19T23:42:16.048Z",
+                    "updated_at": "2014-07-19T23:42:16.048Z"
+                }
+            ]
         }
         
 ### Delete a user by id [DELETE]
@@ -203,19 +197,26 @@ below are the filter names. DO NOT use quotes around values.
 
 ### Update a user by id [PUT]
 + Request
-    
+        
         {
             "id": 1,
-            "firstName": "nick",
-            "lastName": "malott",
-            "email":"n@m.co",
-            "location":"?",
-            "skillset":["lasers","cannons","Lasercannons","kitten cannons","Canonical References"],
-            "picture":"/images/123.jpg",
-            "projects":[1,2,3],
-            "bio":"thisisabio",
-            "status":"Working, bruh",
-            "prevProj":[4,5]
+            "firstName": "John",
+            "lastName": "Doe",
+            "created_at": "2014-07-14T21:19:56.091Z",
+            "updated_at": "2014-07-14T21:19:56.091Z",
+            "email": null,
+            "picture": {
+                "url": null
+            },
+            "skills": [
+                {
+                    "id": 1,
+                    "name": "Dancing",
+                    "description": "Kind of gay",
+                    "created_at": "2014-07-19T23:42:16.048Z",
+                    "updated_at": "2014-07-19T23:42:16.048Z"
+                }
+            ]
         }
 
 + Response 202 (application/json)
