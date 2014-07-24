@@ -353,16 +353,35 @@ below are the filter names. DO NOT use quotes around values.
             {
                 "id":2,
                 "name": "ThisIsMyProj",
-                "subname": "AndSubname",
+                "subName": "AndSubname",
                 "description":"Thang",
-                "competencies":["defi","AndSame"],
                 "lastUpdated":"3/27/2014 05:22:35",
                 "owner":
                 {
                     "id":1,
-                    "name":"Joe Schmoe"
+                    "firstName":"Joe",
+                    "lastName":"Scmoe
                 
                 },
+                "requiredSkills" : [
+                    {
+                        "id":1,
+                        "name": "Lasers",
+                        "description": "Laser related techniques"
+                    },
+                    {
+                        "id":2,
+                        "name": "Blasting",
+                        "description": "Blasting related techniques"
+                    }
+                ],
+                "members": [
+                    {
+                        "id": 6,
+                        "firstName": "Alain",
+                        "lastName": "Kuchta"
+                    }
+                ],
                 "picture":"/images/123.jpg"
             },
             {
@@ -370,37 +389,37 @@ below are the filter names. DO NOT use quotes around values.
                 "name": "ThisIsMyProj",
                 "subname": "AndSubname",
                 "description":"Thang",
-                "competencies":["defi","AndSame"],
                 "lastUpdated":"3/27/2014 05:22:35",
-                "owner":
-                {
+                "owner": {
                     "id":3,
                     "name":"John Schmoe"
                 
                 },
-                "picture":"/images/123.jpg"
-            },
-            {
-                "id":5,
-                "name": "ThisIsMyProj",
-                "subname": "AndSubname",
-                "description":"Thang",
-                "competencies":["defi","AndSame"],
-                "lastUpdated":"3/27/2014 05:22:35",
-                "owner":
-                {
-                    "id":12,
-                    "name":"Joe Toe"
-                
-                },
+                "requiredSkills" : [
+                    {
+                        "id":1,
+                        "name": "Lasers",
+                        "description": "Laser related techniques"
+                    },
+                    {
+                        "id":2,
+                        "name": "Blasting",
+                        "description": "Blasting related techniques"
+                    }
+                ],
+                "members": [
+                    {
+                        "id": 6,
+                        "firstName": "Alain",
+                        "lastName": "Kuchta"
+                    }
+                ],
                 "picture":"/images/123.jpg"
             }
         ]
 
 
-
-
-## Projects [/projects/{id}]
+## Project [/projects/{id}]
 
 ### Attributes
 <table><th align="left">
