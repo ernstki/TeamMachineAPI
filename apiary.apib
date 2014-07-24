@@ -37,6 +37,34 @@ Resources of the **Projects API**
 + Affordances: These are functions used as HTTP requests (client &rarr; server):
 + Search Parameters: Used to query server to search DB
 
+# Group Login
+## Login [/login]
+Use this endpoint to login.
+This endpoint infers the user from the included `Authorization` header and returns the **User** object for that user.
+
+### Get the user for the given Authorization credentials [GET]
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "firstName": "John",
+            "lastName": "Doe",
+            "created_at": "2014-07-14T21:19:56.091Z",
+            "updated_at": "2014-07-14T21:19:56.091Z",
+            "email": null,
+            "picture": {
+                "url": null
+            },
+            "skills": [
+                {
+                    "id": 1,
+                    "name": "Dancing",
+                    "description": "Kind of gay",
+                    "created_at": "2014-07-19T23:42:16.048Z",
+                    "updated_at": "2014-07-19T23:42:16.048Z"
+                }
+            ]
+        }
 
 
 # Group Users
