@@ -319,18 +319,7 @@ Individual skill within collection of all skills
 All projects are stored here with unique identifiers
 
 ### Attributes
-<table><th align="left">
-        Name</th><th align="left">
-                             Description</th></tr>
-<tr><td>id</td>          <td>ID of the project (<em>server assigned on create</em>)</td></tr>
-<tr><td>name</td>        <td>Name of the project</td></tr>
-<tr><td>subName</td>     <td>Tag line for the project</td></tr>
-<tr><td>description</td> <td>Description of the project</td></tr>
-<tr><td>owner</td>       <td>Project owner ID</td></tr>
-<tr><td>picture</td>     <td>picture for project</td></tr>
-<tr><td>created</td>     <td>Date project created (<em>server assigned on create</em>)</td></tr>
-<tr><td>lastUpdated</td> <td>Date project last updated (<em>server assigned on create/update</em>)</td></tr>
-</table>
+Same as [Project](#Project) API below.
 
 ###Affordances
 + These are functions used as HTTP requests (client &rarr; server):
@@ -431,8 +420,8 @@ below are the filter names. DO NOT use quotes around values.
 <tr><td>description</td> <td>Description of the project</td></tr>
 <tr><td>owner</td>       <td>Project owner ID</td></tr>
 <tr><td>picture</td>     <td>picture for project</td></tr>
-<tr><td>requiredSkills</td><td>An `array` of **Skill** objects which are the skills required for the project</td></tr>
-<tr><td>members</td>       <td>An `array` of **User** objects containing only *id*,*firstName*, and *lastName*</td></tr>
+<tr><td>requiredSkills</td><td>An array of Skill objects which are the skills required for the project</td></tr>
+<tr><td>members</td>       <td>An array of User objects containing only id,firstName, and lastName</td></tr>
 <tr><td>created</td>     <td>Date project created (<em>server assigned on create</em>)</td></tr>
 <tr><td>lastUpdated</td> <td>Date project last updated (<em>server assigned on create/update</em>)</td></tr>
 </table>
