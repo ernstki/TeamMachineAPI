@@ -450,39 +450,79 @@ below are the filter names. DO NOT use quotes around values.
 + Response 200 (application/json)
 
         {
-            "id":5,
-            "name": "ThisIsMyProj",
-            "subname": "AndSubname",
-            "description":"Thang",
-            "competencies":["defi","AndSame"],
-            "lastUpdated":"3/27/2014 05:22:35",
-            "owner":
+            "id": 1,
+            "name": "Ultra Blaster 7",
+            "description": "Ultra Blaster 7 is a high intensity rabbit emulsification simulation.",
+            "created_at": "2014-07-18T13:12:45.676Z",
+            "updated_at": "2014-07-19T23:59:58.046Z",
+            "picture": null,
+            "subName": "Blasting better than before!",
+            "owner": {
+                "id": 6,
+                "firstName": "Alain",
+                "lastName": "Kuchta"
+            },
+            "requiredSkills": [
                 {
-                    "id":1,
-                    "name":"Joe Schmoe"
-                
+                    "id": 1,
+                    "name": "Dancing",
+                    "description": "Kind of gay"
                 },
-            "picture":"/images/123.jpg"
+                {
+                    "id": 2,
+                    "name": "lasers",
+                    "description": "Fucking lasers man"
+                }
+            ],
+            "members": [
+                {
+                    "id": 6,
+                    "firstName": "Alain",
+                    "lastName": "Kuchta"
+                }
+            ]
         }
-
-
+    
 ### Update a project [PUT]
+Using PUT implies replacing values of fields you include in the request.
+
+Example:  
+If you include `"name" : "Awesome Project"` in the JSON object, the new name of the project will be
+`Awesome Project`
 + Request
     
         {
-            "id":2,
-            "name": "NewTitle",
-            "subname": "ButSameSubname",
-            "description":"ThisMayRemainUnchanged",
-            "competencies":["same","AndSame"],
-            "lastUpdated":"NOW"
-            "owner":
+            "id": 1,
+            "name": "Ultra Blaster 7",
+            "description": "Ultra Blaster 7 is a high intensity rabbit emulsification simulation.",
+            "created_at": "2014-07-18T13:12:45.676Z",
+            "updated_at": "2014-07-19T23:59:58.046Z",
+            "picture": null,
+            "subName": "Blasting better than before!",
+            "owner": {
+                "id": 6,
+                "firstName": "Alain",
+                "lastName": "Kuchta"
+            },
+            "requiredSkills": [
                 {
-                    "id":1,
-                    "name":"Joe Schmoe"
-                
+                    "id": 1,
+                    "name": "Dancing",
+                    "description": "Kind of gay"
                 },
-            "picture":"/images/123.jpg"
+                {
+                    "id": 2,
+                    "name": "lasers",
+                    "description": "Fucking lasers man"
+                }
+            ],
+            "members": [
+                {
+                    "id": 6,
+                    "firstName": "Alain",
+                    "lastName": "Kuchta"
+                }
+            ]
         }
             
 
