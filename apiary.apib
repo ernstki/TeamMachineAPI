@@ -8,6 +8,17 @@ Team Machine API Specification
 <tr><th align="left">
         Version</th><th align="left">
                        Description</th></tr>
+
+<tr><td valign="top">
+        0.4</td>   <td>Adds <code>/login</code> endpoint; all <code>DELETE</code>
+                       requests now return 204 (vs. 202 in 0.3). Roles API search
+                       parameters and <code>PATCH</code> action documented.</td></tr>
+<tr><td valign="top">
+        0.3.2</td> <td>Multiple updates to Skills and Projects API (see commits
+                       3fd242a, 7c0c16a, 8636409, 0e0ed1e, d2c5d4a, a905ae9, f828cce,
+                       and 3f1c912 on the
+                       <a href="https://github.com/nmoadev/TeamMachineAPI/commits/master">TeamMachine org</a>
+                       on GitHub).</td></tr>
 <tr><td valign="top">
         0.3.1</td> <td>Added "Role" endpoint; removed updated/created from
                        <code>PUT</code> requests and updated description of
@@ -59,7 +70,7 @@ This endpoint infers the user from the included `Authorization` header and retur
                 {
                     "id": 1,
                     "name": "Dancing",
-                    "description": "Kind of gay",
+                    "description": "Kind of fabbalous",
                     "created_at": "2014-07-19T23:42:16.048Z",
                     "updated_at": "2014-07-19T23:42:16.048Z"
                 }
@@ -73,6 +84,10 @@ This endpoint infers the user from the included `Authorization` header and retur
 + Root collection of all users
 
 ### Attributes
+
+Same as __Individual User__ API below, with the exception of the password being optional after
+initial creation.
+
 <table>
 <tr><th align="left">
         Name</th><th align="left">
@@ -81,6 +96,8 @@ This endpoint infers the user from the included `Authorization` header and retur
 <tr><td>firstName</td> <td>user first name</td></tr>
 <tr><td>lastName</td>  <td>user last name</td></tr>
 <tr><td>email</td>     <td>user registered email</td></tr>
+<tr><td>password</td>  <td>password (required on initial creation; updated with <code>PATCH</code>
+                           thereafter)</td></tr>
 <tr><td>location</td>  <td>user location</td></tr>
 <tr><td>skillset</td>  <td>set of user skills</td></tr>
 <tr><td>picture</td>   <td>path to image on filesystem or reserved literal <code>#GRAVATAR</code></td></tr>
@@ -89,6 +106,7 @@ This endpoint infers the user from the included `Authorization` header and retur
 <tr><td>status</td>    <td>status a user</td></tr>
 <tr><td>prevProj</td>  <td>previous projects user been involved in</td></tr>
 </table>
+
 
 ### Affordances
 + These are functions used as HTTP requests (client -> server):
@@ -111,45 +129,49 @@ below are the filter names. DO NOT use quotes around values.
 ### Get all users base info - Intended for use with search [GET]
 + Response 200 (application/json)
 
-        {
-            "id": 1,
-            "firstName": "John",
-            "lastName": "Doe",
-            "created_at": "2014-07-14T21:19:56.091Z",
-            "updated_at": "2014-07-14T21:19:56.091Z",
-            "email": null,
-            "picture": {
-                "url": null
+        [
+            {
+                "id": 1,
+                "firstName": "John",
+                "lastName": "Doe",
+                "created_at": "2014-07-14T21:19:56.091Z",
+                "updated_at": "2014-07-14T21:19:56.091Z",
+                "email": null,
+                "picture": {
+                    "url": null
+                },
+                "skills": [
+                    {
+                        "id": 1,
+                        "name": "Dancing",
+                        "description": "Kind of fabbalous",
+                        "created_at": "2014-07-19T23:42:16.048Z",
+                        "updated_at": "2014-07-19T23:42:16.048Z"
+                    }
+                ]
             },
-            "skills": [
-                {
-                    "id": 1,
-                    "name": "Dancing",
-                    "description": "Kind of gay",
-                    "created_at": "2014-07-19T23:42:16.048Z",
-                    "updated_at": "2014-07-19T23:42:16.048Z"
-                }
-            ]
-        },
-        {
-            "id": 3,
-            "firstName": "John",
-            "lastName": "Doe",
-            "created_at": "2014-07-14T21:26:42.018Z",
-            "updated_at": "2014-07-14T21:26:42.018Z",
-            "email": null,
-            "picture": {
-                "url": null
-            },
-            "skills": []
-        }
-        
+            {
+                "id": 3,
+                "firstName": "John",
+                "lastName": "Doe",
+                "created_at": "2014-07-14T21:26:42.018Z",
+                "updated_at": "2014-07-14T21:26:42.018Z",
+                "email": null,
+                "picture": {
+                    "url": null
+                },
+                "skills": []
+            }
+        ]
+
 ### Create a new user [POST]
 + Request
 
         {
             "firstName": "John",
             "lastName": "Jacob",
+            "email": "jjacob@example.com",
+            "password": "fluffykitties77",
             "picture": "/images/123.jpg",
             "location": "Jingle",
             "skillset": [
@@ -163,7 +185,7 @@ below are the filter names. DO NOT use quotes around values.
         {
             "id": 4333
         }
-        
+
 
 ## Individual User [/users/{id}]
 
@@ -176,6 +198,7 @@ below are the filter names. DO NOT use quotes around values.
 <tr><td>firstName</td> <td>user first name</td></tr>
 <tr><td>lastName</td>  <td>user last name</td></tr>
 <tr><td>email</td>     <td>user registered email</td></tr>
+<tr><td>password</td>  <td>password (only required on initial creation; update with <code>PATCH</code>)</td></tr>
 <tr><td>location</td>  <td>user location</td></tr>
 <tr><td>skillset</td>  <td>set of user skills</td></tr>
 <tr><td>picture</td>   <td>path to image on filesystem or reserved literal <code>#GRAVATAR</code></td></tr>
@@ -213,7 +236,7 @@ below are the filter names. DO NOT use quotes around values.
                 {
                     "id": 1,
                     "name": "Dancing",
-                    "description": "Kind of gay",
+                    "description": "Kind of fabbalous",
                     "created_at": "2014-07-19T23:42:16.048Z",
                     "updated_at": "2014-07-19T23:42:16.048Z"
                 }
@@ -221,7 +244,7 @@ below are the filter names. DO NOT use quotes around values.
         }
         
 ### Delete a user by id [DELETE]
-+ Response 202 (application/json)
++ Response 204 (application/json)
 
 ### Update a user by id [PUT]
 + Request
@@ -240,7 +263,7 @@ below are the filter names. DO NOT use quotes around values.
                 {
                     "id": 1,
                     "name": "Dancing",
-                    "description": "Kind of gay",
+                    "description": "Kind of fabbalous",
                     "created_at": "2014-07-19T23:42:16.048Z",
                     "updated_at": "2014-07-19T23:42:16.048Z"
                 }
@@ -256,7 +279,7 @@ below are the filter names. DO NOT use quotes around values.
 Master list of all skills
 
 ###Attributes
-Same as [Skill](#Skill) API below.
+Same as __Individual Skill__ API below.
 
 ###Affordances
 + These are functions used as HTTP requests (client &rarr; server):
@@ -273,7 +296,7 @@ below are the filter names. DO NOT use quotes around values.
 ### Get all skills - Used for search [GET]
 + Response 200 (application/json)
     
-        {
+        [
             {
                 "id":229,
                 "name":"Android UI Development",
@@ -284,7 +307,7 @@ below are the filter names. DO NOT use quotes around values.
                 "name":"Karate",
                 "description": "Kicking and screaming",
             }
-        }
+        ]
 
 ### Create a new Skill [POST]
 + Request (application/json)
@@ -294,7 +317,7 @@ below are the filter names. DO NOT use quotes around values.
             "description": "Lasers and stuff"
         }
 
-+ Response 200 (application/json)
++ Response 201 (application/json)
     
         {
             "id":209"
@@ -302,7 +325,7 @@ below are the filter names. DO NOT use quotes around values.
 
 
 
-## Skill [/skills/{id}]
+## Individual Skill [/skills/{id}]
 Individual skill within collection of all skills
 
 ###Attributes
@@ -322,7 +345,7 @@ Individual skill within collection of all skills
 + Parameters
     + id (optional, int, `1`) ... id of the skill
 
-            
+
 ### Retrieve a single Skill [GET]
 + Response 200 (application/json)
 
@@ -340,7 +363,7 @@ Individual skill within collection of all skills
 All projects are stored here with unique identifiers
 
 ### Attributes
-Same as [Project](#Project) API below.
+Same as __Individual Project__ API below.
 
 ###Affordances
 + These are functions used as HTTP requests (client &rarr; server):
@@ -370,7 +393,7 @@ below are the filter names. DO NOT use quotes around values.
                 {
                     "id":1,
                     "firstName":"Joe",
-                    "lastName":"Scmoe
+                    "lastName":"Schmoe"
                 },
                 "requiredSkills" : [
                     {
@@ -403,7 +426,7 @@ below are the filter names. DO NOT use quotes around values.
                 {
                     "id":1,
                     "firstName":"Joe",
-                    "lastName":"Scmoe
+                    "lastName":"Schmoe"
                 },
                 "requiredSkills" : [
                     {
@@ -429,7 +452,7 @@ below are the filter names. DO NOT use quotes around values.
         ]
 
 
-## Project [/projects/{id}]
+## Individual Project [/projects/{id}]
 
 ### Attributes
 <table><th align="left">
@@ -447,7 +470,6 @@ below are the filter names. DO NOT use quotes around values.
 <tr><td>lastUpdated</td> <td>Date project last updated (<em>server assigned on create/update</em>)</td></tr>
 </table>
 
-
 ###Affordances
 + These are functions used as HTTP requests (client &rarr; server):
 + 'GET' ... gets the specified project by ID
@@ -456,7 +478,7 @@ below are the filter names. DO NOT use quotes around values.
 
 + Parameters
     + id (optional, int, `1`) ... Numeric `id` of the folder to perform action with.
-    
+
 
 ### Retrieve a single project [GET]
 + Response 200 (application/json)
@@ -478,12 +500,12 @@ below are the filter names. DO NOT use quotes around values.
                 {
                     "id": 1,
                     "name": "Dancing",
-                    "description": "Kind of gay"
+                    "description": "Kind of fabbalous"
                 },
                 {
                     "id": 2,
                     "name": "lasers",
-                    "description": "Fucking lasers man"
+                    "description": "Frickin' lasers man"
                 }
             ],
             "members": [
@@ -494,15 +516,16 @@ below are the filter names. DO NOT use quotes around values.
                 }
             ]
         }
-    
+
 ### Update a project [PUT]
 Using PUT implies replacing values of fields you include in the request.
 
 Example:  
 If you include `"name" : "Awesome Project"` in the JSON object, the new name of the project will be
 `Awesome Project`
+
 + Request
-    
+
         {
             "id": 1,
             "name": "Ultra Blaster 7",
@@ -520,12 +543,12 @@ If you include `"name" : "Awesome Project"` in the JSON object, the new name of 
                 {
                     "id": 1,
                     "name": "Dancing",
-                    "description": "Kind of gay"
+                    "description": "Kind of fabbalous"
                 },
                 {
                     "id": 2,
                     "name": "lasers",
-                    "description": "Fucking lasers man"
+                    "description": "Frickin' lasers man"
                 }
             ],
             "members": [
@@ -536,19 +559,88 @@ If you include `"name" : "Awesome Project"` in the JSON object, the new name of 
                 }
             ]
         }
-            
+
 
 + Response 202 (application/json)
 
 
 ### Delete a project [DELETE]
-+ Response 202 (application/json)
++ Response 204 (application/json)
 
 # Group Roles
 
-## Roles [/roles/{id}]
+## Roles Collection [/roles]
++ Root collection of all project roles (used for search, auto-complete, or duplicate detection)
 
 ### Attributes
+
+Same as __Individual Role__ API below.
+
+###Affordances
++ These are functions used as HTTP requests (client &rarr; server):
++ 'GET' ... Retrieves all roles which exist on the server
++ 'PUT' ... Create a new role
++ 'DELETE' ... Mass-delete a list of roles (provided as JSON in the request body)
+
+###Search Parameters
+Search is accomplished by including a hash in the query params called *search*. This hash contains
+key value pairs where the key is the name of the filter to use and the value is the value to filter
+on.
+
+Below are the filter names. DO NOT use quotes around values.
+
+* Parameters -- Append `?search[filter_name]=value&search[another_filter]=anothervalue` to URI
+    * name_like (optional, string, `Kitten`) ... search for projects whose name contains `Kitten`
+    * description_like (optional, string, `wizard apprentice`) ... case-insensitive keyword search against `description` property
+    * updated_since (optional, string, `2014-07-10T18:38:34.389Z`) ... search for projects whose last updated date is after `2014-07-10T18:38:34.389Z`
+    * project_id_is (optional, string, `1`) ... search roles belonging to project id of `1`
+
+### Request all roles [GET]
++ Response 200 (application/json)
+
+        [
+            {
+                "id":1,
+                "name": "Keeper of the Keys",
+                "description": "The team member who keeps the key(s)",
+                "created": "3/27/2014 05:22:35",
+                "lastUpdated": "3/27/2014 05:22:35",
+            },
+            }
+                "id":2,
+                "name": "Head Cook and Bottle Washer",
+                "description": "The team member who cooks and washes bottles",
+                "created": "3/27/2014 05:22:35",
+                "lastUpdated": "3/27/2014 05:22:35",
+            },
+            {
+                "id":5,
+                "name": "Marmot Wrangler",
+                "description": "The team member who wrangles the marmot(s)",
+                "created": "3/27/2014 05:22:35",
+                "lastUpdated": "3/27/2014 05:22:35",
+            }
+        ]
+
+
+### Create a new Role [PUT]
++ Request
+
+        {
+            "name": "Keeper of the Keys",
+            "description": "The team member who keeps the key(s)"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "id": 1
+        }
+
+## Individual Role [/roles/{id}]
+
+### Attributes
+
 <table>
 <tr><th align="left">
         Name</th><th align="left">
@@ -560,36 +652,55 @@ If you include `"name" : "Awesome Project"` in the JSON object, the new name of 
 <tr><td>lastUpdated</td> <td>Date role last updated (<em>server assigned on create/update</em>)</td></tr>
 </table>
 
-###Affordances
+### Affordances
 + These are functions used as HTTP requests (client &rarr; server):
-+ 'GET' ... gets the specified role by ID
-+ 'PUT' ... Create or update a role
-+ 'DELETE' ... Delete a role
++ 'GET' ... Retrieve a role
++ 'PUT' ... Update a role by replacing its content with the entirety of the request body
++ 'PATCH' ... Update only specific properties of the role (_e.g._ rename or change description)
++ 'DELETE' ... Delete the specified role
 
 + Parameters
-    + id (optional, int, `1`) ... Numeric `id` of the folder to perform action with.
+    + id (required, int, `1`) ... id of the user to retrieve
+
 
 ### Retrieve a single role [GET]
 + Response 200 (application/json)
 
         {
-            "id":5,
+            "id : 5,
             "name": "Marmot Wrangler",
             "description": "The team member who wrangles the marmot(s)",
             "created": "3/27/2014 05:22:35",
             "lastUpdated": "3/27/2014 05:22:35",
         }
 
-
-### Create or update a role [PUT]
-+ Request
-
+### Overwrite all properties of an existing role (_e.g._ mass-updated) [PUT]
++ Request (application/json)
         {
-            "name": "Keeper of the Keys",
-            "description": "The team member who keeps the key(s)"
+            "id":1,
+            "name": "Keymaster",
+            "description": "The team member who keeps the key(s)",
+            "created": "3/27/2014 05:22:35",
+            "lastUpdated": "3/27/2014 05:22:35",
         }
 
 + Response 202 (application/json)
+
+### Update an existing role (_e.g._, change description) [PATCH]
++ Request (application/json)
+
+        {
+            "name": "Keymaster"
+        }
+
++ Response 202 (application/json)
+        {
+            "id":1,
+            "name": "Keymaster",
+            "description": "The team member who keeps the key(s)",
+            "created": "3/27/2014 05:22:35",
+            "lastUpdated": "3/27/2014 05:22:35",
+        }
 
 
 ### Delete a role [DELETE]
