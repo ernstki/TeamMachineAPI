@@ -477,7 +477,7 @@ below are the filter names. DO NOT use quotes around values.
 + 'DELETE' ... Delete a project
 
 + Parameters
-    + id (optional, int, `1`) ... Numeric `id` of the folder to perform action with.
+    + id (optional, int, `1`) ... Numeric `id` of the project to perform action with.
 
 
 ### Retrieve a single project [GET]
@@ -590,9 +590,9 @@ on.
 Below are the filter names. DO NOT use quotes around values.
 
 * Parameters -- Append `?search[filter_name]=value&search[another_filter]=anothervalue` to URI
-    * name_like (optional, string, `Kitten`) ... search for projects whose name contains `Kitten`
+    * name_like (optional, string, `manager`) ... search for roles whose name contains `manager`
     * description_like (optional, string, `wizard apprentice`) ... case-insensitive keyword search against `description` property
-    * updated_since (optional, string, `2014-07-10T18:38:34.389Z`) ... search for projects whose last updated date is after `2014-07-10T18:38:34.389Z`
+    * updated_since (optional, string, `2014-07-10T18:38:34.389Z`) ... search for roles whose last updated date is after `2014-07-10T18:38:34.389Z`
     * project_id_is (optional, string, `1`) ... search roles belonging to project id of `1`
 
 ### Request all roles [GET]
@@ -660,7 +660,7 @@ Below are the filter names. DO NOT use quotes around values.
 + 'DELETE' ... Delete the specified role
 
 + Parameters
-    + id (required, int, `1`) ... id of the user to retrieve
+    + id (required, int, `1`) ... id of the role to retrieve
 
 
 ### Retrieve a single role [GET]
